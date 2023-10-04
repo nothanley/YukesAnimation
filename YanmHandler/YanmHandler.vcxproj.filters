@@ -27,10 +27,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Container\C_YukesAnim.cpp">
+    <ClCompile Include="Container\C_YukesAnimFile.cpp">
       <Filter>Header Files\Container</Filter>
     </ClCompile>
-    <ClCompile Include="Animation\C_YukesSceneAnim.cpp">
+    <ClCompile Include="Animation\C_YukesAnim.cpp">
       <Filter>Header Files\Animation</Filter>
     </ClCompile>
     <ClCompile Include="C_YanmHandler.cpp">
@@ -44,10 +44,10 @@
     <ClInclude Include="DataIO\BinaryIO.h">
       <Filter>Header Files\DataIO</Filter>
     </ClInclude>
-    <ClInclude Include="Container\C_YukesAnim.h">
+    <ClInclude Include="Container\C_YukesAnimFile.h">
       <Filter>Header Files\Container</Filter>
     </ClInclude>
-    <ClInclude Include="Animation\C_YukesSceneAnim.h">
+    <ClInclude Include="Animation\C_YukesAnim.h">
       <Filter>Header Files\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Codec\C_YukesEncoder.h">

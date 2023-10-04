@@ -1,13 +1,12 @@
-#include <winsock.h>
-#pragma comment(lib, "Ws2_32.lib")
 #include "DataIO/BinaryIO.h"
+#include "../Animation/C_YukesAnim.h"
+#pragma comment(lib, "Ws2_32.lib")
 #pragma once
 
 using namespace std;
 using namespace BinaryIO;
 
-class YukesAnim
-{
+class YukesAnimFile{
 	enum {
 		YANM = 0x59414E4D
 	};
@@ -16,7 +15,7 @@ public:
 	std::string filePath;
 	uint64_t fileSize;
 
-	YukesAnim(const char* FilePath) {
+	YukesAnimFile(const char* FilePath) {
 		this->filePath = FilePath;
 		LoadFile();
 	}
@@ -33,14 +32,13 @@ public:
 
 private:
 	std::filebuf* fileBuffer = new std::filebuf();
-	std::iostream* fs;
+	std::ifstream* fs;
 	bool isOk = false;
 
 	void ReadContents() {
 		this->fileSize = GetFileBufferSize(fileBuffer);
 		printf("Opening File: %s\n", filePath.c_str());
-
-
+		YukesAnim(this->fs);
 	}
 
 	uint64_t GetFileBufferSize(std::filebuf* buffer) {
@@ -51,7 +49,7 @@ private:
 
 	void ValidateContainer() {
 		//seeks magic and validates
-		this->fs = new std::iostream(fileBuffer);
+		this->fs = new std::ifstream(fileBuffer);
 		fileBuffer->pubseekpos(ios_base::beg);
 		uint32_t signature = ReadUInt32(*fs);
 
