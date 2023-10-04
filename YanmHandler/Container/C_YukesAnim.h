@@ -8,7 +8,7 @@ using namespace std;
 class YukesAnim
 {
 	enum {
-		YANM = 0x4D544C73
+		YANM = 0x59414E4D
 	};
 
 public:
@@ -19,42 +19,42 @@ public:
 	YukesAnim() { }
 
 	YukesAnim(const char* FilePath) {
-		LoadFile(FilePath);
+		this->filePath = FilePath;
+		LoadFile();
 	}
 
-	void LoadFile(const char* FilePath) {
-		//verifies if file is readable
-		ifstream inFile(FilePath);
+	void LoadFile() {
 
+		ifstream inFile(this->filePath);
 		if (inFile.good())
-			fileBuffer->open(FilePath, ios::in | ios::binary);
+			fileBuffer->open(filePath, ios::in | ios::binary);
 		else
 			throw("Cannot Open File.");
 
-		//store filepath to object
-		filePath = FilePath;
-		printf("Opening File: %s\n", FilePath);
-		validateMTLs();
+		// store file attributes
+		printf("Opening File: %s\n", filePath.c_str());
+		ValidateContainer();
+		this->fileSize = GetFileBufferSize(fileBuffer);
 
-		//store file size
-		fileBuffer->pubseekoff(0, std::ios::end);
-		std::streampos size = fileBuffer->pubseekoff(0, std::ios::cur);
-		this->fileSize = size;
-
-		//reset-seek
-		fileBuffer->pubseekpos(ios_base::beg);
-
-		//reads through container data
-		processMain();
+		// perform read operation
+		ReadContents();
 	}
 
-	void processMain() {
+private:
+	bool isOk = false;
+
+	void ReadContents() {
+		printf("\nValidated File");
 
 	}
 
+	uint64_t GetFileBufferSize(std::filebuf* buffer) {
+		buffer->pubseekoff(0, std::ios::end);
+		std::streampos size = buffer->pubseekoff(0, std::ios::cur);
+		return uint64_t(size);
+	}
 
-	void validateMTLs() { //this should be bool
-
+	void ValidateContainer() {
 		DWORD magicSig;
 		std::iostream fs(fileBuffer);
 
@@ -63,14 +63,11 @@ public:
 		fs.read((char*)&magicSig, sizeof(DWORD));
 
 		//validate type and version
-		if (ntohl(magicSig) != YANM) {
+		if (ntohl(magicSig) != YANM)
 			throw("File is not a valid MTLs container.");
-		}
 
-		//cout << "Verified MTLs container." << endl;
+		this->isOk = true;
 	}
 
-
-private:
 
 };
