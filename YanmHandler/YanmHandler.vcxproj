@@ -131,11 +131,13 @@
     <ClCompile Include="Codec\C_YukesEncoder.cpp" />
     <ClCompile Include="Container\C_YukesAnimFile.cpp" />
     <ClCompile Include="C_YanmHandler.cpp" />
+    <ClCompile Include="C_YukesDecoder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesEncoder.h" />
     <ClInclude Include="Container\C_YukesAnimFile.h" />
+    <ClInclude Include="C_YukesDecoder.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,26 +1,21 @@
+#pragma once
 #include "../DataIO/BinaryIO.h"
-using namespace std;
 
+class YukesAnimFile;
 class YukesAnim {
 
 public:
-	YukesAnim( std::ifstream* stream ) {
-		this->fs = stream;
-		ReadYANMStream();
+	YukesAnim( YukesAnimFile* file ) {
+		this->m_FileObj = file;
+		InitializeStream();
 	}
 
 private:
+	YukesAnimFile* m_FileObj;
 	uint64_t streamSize;
 	std::ifstream* fs;
 
-	void ReadYanmAttributes() {
-		uint32_t magic = ReadUInt32(*fs);
-		this->streamSize = ReadUInt32(*fs);
-	}
-
-	void ReadYANMStream() {
-		ReadYanmAttributes();
-
-	}
-
+	void InitializeStream();
+	void ReadYanmAttributes();
+	void ReadYANMStream();
 };

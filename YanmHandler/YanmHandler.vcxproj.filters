@@ -39,6 +39,9 @@
     <ClCompile Include="Codec\C_YukesEncoder.cpp">
       <Filter>Header Files\Codec</Filter>
     </ClCompile>
+    <ClCompile Include="C_YukesDecoder.cpp">
+      <Filter>Header Files\Codec</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataIO\BinaryIO.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Codec\C_YukesEncoder.h">
+      <Filter>Header Files\Codec</Filter>
+    </ClInclude>
+    <ClInclude Include="C_YukesDecoder.h">
       <Filter>Header Files\Codec</Filter>
     </ClInclude>
   </ItemGroup>
