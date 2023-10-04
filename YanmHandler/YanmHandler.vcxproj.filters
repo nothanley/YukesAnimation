@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{f8469c9c-966f-4d56-88d0-f7d6b1087b5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Codec">
+      <UniqueIdentifier>{cbcb9ee5-7057-4cb8-ad01-fd59a76b2def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Container">
+      <UniqueIdentifier>{b543a6d1-2ba3-4fc1-b847-d4813fd338f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataIO">
+      <UniqueIdentifier>{a88587c6-b8d4-4ecf-9dbb-72157b50585c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Container\C_YukesAnim.cpp">
+      <Filter>Header Files\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\C_YukesSceneAnim.cpp">
+      <Filter>Header Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C_YanmHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Codec\C_YukesEncoder.cpp">
+      <Filter>Header Files\Codec</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataIO\BinaryIO.h">
+      <Filter>Header Files\DataIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\C_YukesAnim.h">
+      <Filter>Header Files\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\C_YukesSceneAnim.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\C_YukesEncoder.h">
+      <Filter>Header Files\Codec</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
