@@ -1,9 +1,10 @@
-#include <fstream>
 #include <winsock.h>
-#include <stdint.h>
 #pragma comment(lib, "Ws2_32.lib")
+#include "DataIO/BinaryIO.h"
 #pragma once
+
 using namespace std;
+using namespace BinaryIO;
 
 class YukesAnim
 {
@@ -13,10 +14,7 @@ class YukesAnim
 
 public:
 	std::string filePath;
-	std::filebuf* fileBuffer = new std::filebuf();
-	uint32_t fileSize;
-
-	YukesAnim() { }
+	uint64_t fileSize;
 
 	YukesAnim(const char* FilePath) {
 		this->filePath = FilePath;
@@ -24,27 +22,24 @@ public:
 	}
 
 	void LoadFile() {
-
 		ifstream inFile(this->filePath);
 		if (inFile.good())
 			fileBuffer->open(filePath, ios::in | ios::binary);
-		else
-			throw("Cannot Open File.");
+		else { throw("Cannot Open File."); }
 
-		// store file attributes
-		printf("Opening File: %s\n", filePath.c_str());
 		ValidateContainer();
-		this->fileSize = GetFileBufferSize(fileBuffer);
-
-		// perform read operation
-		ReadContents();
+		if (this->isOk) { ReadContents(); }
 	}
 
 private:
+	std::filebuf* fileBuffer = new std::filebuf();
+	std::iostream* fs;
 	bool isOk = false;
 
 	void ReadContents() {
-		printf("\nValidated File");
+		this->fileSize = GetFileBufferSize(fileBuffer);
+		printf("Opening File: %s\n", filePath.c_str());
+
 
 	}
 
@@ -55,18 +50,14 @@ private:
 	}
 
 	void ValidateContainer() {
-		DWORD magicSig;
-		std::iostream fs(fileBuffer);
-
 		//seeks magic and validates
+		this->fs = new std::iostream(fileBuffer);
 		fileBuffer->pubseekpos(ios_base::beg);
-		fs.read((char*)&magicSig, sizeof(DWORD));
+		uint32_t signature = ReadUInt32(*fs);
 
 		//validate type and version
-		if (ntohl(magicSig) != YANM)
-			throw("File is not a valid MTLs container.");
-
-		this->isOk = true;
+		if (ntohl(signature) == YANM)
+			this->isOk = true;
 	}
 
 
