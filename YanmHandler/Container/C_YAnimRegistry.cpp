@@ -25,8 +25,5 @@ void YukesAnimRegistry::GetYanmAttributes() {
 }
 
 void YukesAnimRegistry::CreateAnimationTrack() {
-
 	YukesAnim animTrack(this);
-	
-
 }

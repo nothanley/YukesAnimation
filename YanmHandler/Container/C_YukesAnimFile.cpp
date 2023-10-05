@@ -18,12 +18,11 @@ void YukesAnimFile::ReadContents() {
 }
 
 void YukesAnimFile::ValidateContainer() {
-	//seeks magic and validates
 	fs->seekg(ios_base::beg);
 	uint32_t signature = ReadUInt32(*fs);
 	this->fileSize = ReadUInt32(*fs);
 
-	//validate type and version
+	// Validates type and version
 	if (ntohl(signature) == YANM)
 		this->isOk = true;
 }

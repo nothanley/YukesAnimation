@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Animation\C_YukesAnim.cpp" />
     <ClCompile Include="Codec\C_YukesDecoder.cpp" />
-    <ClCompile Include="Codec\C_YukesEncoder.cpp" />
     <ClCompile Include="Container\C_YAnimRegistry.cpp" />
     <ClCompile Include="Container\C_YukesAnimFile.cpp" />
     <ClCompile Include="C_YanmHandler.cpp" />
@@ -137,7 +136,14 @@
   <ItemGroup>
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
-    <ClInclude Include="Codec\C_YukesEncoder.h" />
+    <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat01.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat03.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat04.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat05.h" />
+    <ClInclude Include="Codec\Factory\YukesAnimEnum.h" />
     <ClInclude Include="Container\C_YAnimRegistry.h" />
     <ClInclude Include="Container\C_YukesAnimFile.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
