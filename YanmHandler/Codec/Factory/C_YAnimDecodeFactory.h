@@ -5,7 +5,7 @@
 
 /* Enumerates all known encode signatures */
 enum {
-    Format0 = 0x23,
+    Format0 = 0x2300,
     Format1 = 0x1,
     Format2 = 0x1,
     Format3 = 0x1,
@@ -18,6 +18,9 @@ class YAnimFormat {
 public:
     virtual ~YAnimFormat() {}
     virtual void Decode(std::istream& fs) = 0;
+protected:
+    std::istream* fs;
+    float origin_x, origin_y, origin_z;
 };
 
 #include "YukesAnimEnum.h"

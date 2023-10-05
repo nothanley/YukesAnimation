@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationUtils.cpp" />
     <ClCompile Include="Animation\C_YukesAnim.cpp" />
     <ClCompile Include="Codec\C_YukesDecoder.cpp" />
     <ClCompile Include="Container\C_YAnimRegistry.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="C_YanmHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationUtils.h" />
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />

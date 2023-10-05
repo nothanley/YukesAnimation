@@ -8,7 +8,83 @@
 using namespace std;
 
 namespace BinaryIO {
+		
+	template <class T>
+	void endswap(T* objp)
+	{
+		unsigned char* memp = reinterpret_cast<unsigned char*>(objp);
+		std::reverse(memp, memp + sizeof(T));
+	}
 
+	// Big Endian
+	static int ReadIntBE(istream& fs) {
+		int value = 0;
+		fs.read((char*)&value, 4);
+		endswap(&value);
+		return value;
+	}
+	static unsigned int ReadUIntBE(istream& in) {
+		unsigned int value = 0;
+		in.read((char*)&value, 4);
+		endswap(&value);
+		return value;
+	}
+	static uint32_t ReadUInt32BE(istream& in) {
+		uint32_t value = 0;
+		in.read((char*)&value, 4);
+		endswap(&value);
+		return value;
+	}
+	static int8_t ReadSInt8BE(istream& in) {
+		int8_t value = 0;
+		in.read((char*)&value, 1);
+		endswap(&value);
+		return value;
+	}
+	static int16_t ReadSInt16BE(istream& in) {
+		int16_t value = 0;
+		in.read((char*)&value, 2);
+		endswap(&value);
+		return value;
+	}
+	static int32_t ReadSInt32BE(istream& in) {
+		int32_t value = 0;
+		in.read((char*)&value, 4);
+		endswap(&value);
+		return value;
+	}
+	static uint64_t ReadUInt64BE(istream& in) {
+		uint64_t value = 0;
+		in.read((char*)&value, sizeof(uint64_t));
+		endswap(&value);
+		return value;
+	}
+	static unsigned short ReadUShortBE(istream& in) {
+		unsigned short value = 0;
+		in.read((char*)&value, 2);
+		endswap(&value);
+		return value;
+	}
+	static short ReadShortBE(istream& in) {
+		short value = 0;
+		in.read((char*)&value, 2);
+		endswap(&value);
+		return value;
+	}
+	static uint8_t ReadByteBE(istream& in) {
+		uint8_t value = 0;
+		in.read((char*)&value, 1);
+		endswap(&value);
+		return value;
+	}
+	static float ReadFloatBE(istream& in) {
+		float value = 0;
+		in.read(reinterpret_cast<char*>(&value), sizeof(uint32_t));
+		endswap(&value);
+		return value;
+	}
+
+	// Little Endian
 	static int ReadInt(istream& fs) {
 		int value = 0;
 		fs.read((char*)&value, 4);

@@ -3,11 +3,11 @@ using namespace BinaryIO;
 
 void YukesDecoder::DecodeMotionTrack() {
 	std::istream* fs = this->m_SourceTrack->stream;
-	this->m_EncodeFormat = ReadUShort(*fs);
-	this->m_BitSize = ReadUShort(*fs);
-	this->m_BoneHash = ReadUInt32(*fs);
+	this->m_EncodeFormat = ReadUShortBE(*fs);
+	this->m_BitSize = ReadUShortBE(*fs);
+	this->m_BoneHash = ReadUInt32BE(*fs);
 
-	printf("\nEncode Type: %d", m_BoneHash);
+	printf("\nEncode Type: %d", m_EncodeFormat);
 	ReadTrackStream(fs);
 }
 

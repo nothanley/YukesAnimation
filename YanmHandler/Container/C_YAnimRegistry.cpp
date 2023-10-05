@@ -20,7 +20,7 @@ void YukesAnimRegistry::ReadYANMStream() {
 void YukesAnimRegistry::GetYanmAttributes() {
 	m_FileObj->m_Version = ReadUShort(*fs);
 	this->m_numTracks = ReadUShort(*fs);
-	uint32_t dataBegin = ReadUInt32(*fs);
+	uint32_t streamPointer = ReadUInt32(*fs);
 	cout << "YANM Version: " << m_FileObj->m_Version;
 }
 

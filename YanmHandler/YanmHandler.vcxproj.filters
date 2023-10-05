@@ -48,6 +48,9 @@
     <ClCompile Include="C_YanmHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataIO\BinaryIO.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h">
       <Filter>Header Files\Codec\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationUtils.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
