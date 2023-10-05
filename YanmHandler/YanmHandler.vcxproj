@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -128,16 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\C_YukesAnim.cpp" />
+    <ClCompile Include="Codec\C_YukesDecoder.cpp" />
     <ClCompile Include="Codec\C_YukesEncoder.cpp" />
+    <ClCompile Include="Container\C_YAnimRegistry.cpp" />
     <ClCompile Include="Container\C_YukesAnimFile.cpp" />
     <ClCompile Include="C_YanmHandler.cpp" />
-    <ClCompile Include="C_YukesDecoder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\C_YukesAnim.h" />
+    <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\C_YukesEncoder.h" />
+    <ClInclude Include="Container\C_YAnimRegistry.h" />
     <ClInclude Include="Container\C_YukesAnimFile.h" />
-    <ClInclude Include="C_YukesDecoder.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

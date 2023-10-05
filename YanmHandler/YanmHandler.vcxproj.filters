@@ -33,14 +33,17 @@
     <ClCompile Include="Animation\C_YukesAnim.cpp">
       <Filter>Header Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="C_YanmHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Codec\C_YukesEncoder.cpp">
       <Filter>Header Files\Codec</Filter>
     </ClCompile>
-    <ClCompile Include="C_YukesDecoder.cpp">
+    <ClCompile Include="Container\C_YAnimRegistry.cpp">
+      <Filter>Header Files\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Codec\C_YukesDecoder.cpp">
       <Filter>Header Files\Codec</Filter>
+    </ClCompile>
+    <ClCompile Include="C_YanmHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,8 +59,11 @@
     <ClInclude Include="Codec\C_YukesEncoder.h">
       <Filter>Header Files\Codec</Filter>
     </ClInclude>
-    <ClInclude Include="C_YukesDecoder.h">
+    <ClInclude Include="Codec\C_YukesDecoder.h">
       <Filter>Header Files\Codec</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\C_YAnimRegistry.h">
+      <Filter>Header Files\Container</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 using namespace std;
 
 namespace BinaryIO {
+	// Helper methods //
 
 	static std::string ReadString(istream& fs, int size) {
 		std::string value;
@@ -23,50 +24,38 @@ namespace BinaryIO {
 	}
 
 	static int ReadInt(istream& fs) {
-
 		int value = 0;
 		fs.read((char*)&value, 4);
-
 		return value;
 	}
 
 	static unsigned int ReadUInt(istream& in) {
-
 		unsigned int value = 0;
 		in.read((char*)&value, 4);
-
 		return value;
 	}
 
 	static uint32_t ReadUInt32(istream& in) {
-
 		uint32_t value = 0;
 		in.read((char*)&value, 4);
-
 		return value;
 	}
 
 	static int8_t ReadSInt8(istream& in) {
-
 		int8_t value = 0;
 		in.read((char*)&value, 1);
-
 		return value;
 	}
 
 	static int16_t ReadSInt16(istream& in) {
-
 		int16_t value = 0;
 		in.read((char*)&value, 2);
-
 		return value;
 	}
 
 	static int32_t ReadSInt32(istream& in) {
-
 		int32_t value = 0;
 		in.read((char*)&value, 4);
-
 		return value;
 	}
 
@@ -77,40 +66,35 @@ namespace BinaryIO {
 	}
 
 	static unsigned short ReadUShort(istream& in) {
-
 		unsigned short value = 0;
 		in.read((char*)&value, 2);
-
 		return value;
 	}
 
 	static short ReadShort(istream& in) {
-
 		short value = 0;
 		in.read((char*)&value, 2);
-
 		return value;
 	}
 
 	static uint8_t ReadByte(istream& in) {
-
 		uint8_t value = 0;
 		in.read((char*)&value, 1);
-
 		return value;
 	}
 
 	static float ReadFloat(istream& in) {
-
 		float value = 0;
 		in.read(reinterpret_cast<char*>(&value), sizeof(uint32_t));
-
 		return value;
 	}
 
 	static bool ReadBool(istream& in) {
 		return (ReadByte(in) != 0);
 	}
+
+
+
 
     //Write-Methods
 
@@ -149,3 +133,61 @@ namespace BinaryIO {
     }
 
 }
+
+
+/*std::istream& operator>>(std::istream& input, int& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(int));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, unsigned int& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(unsigned int));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, int64_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(int64_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, uint32_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(uint32_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, uint16_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(uint16_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, uint8_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(uint8_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, uint64_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(uint64_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, int32_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(int32_t));
+	return input;
+}
+
+
+std::istream& operator>>(std::istream& input, int16_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(int16_t));
+	return input;
+}
+
+
+std::istream& operator>>(std::istream& input, int8_t& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(int8_t));
+	return input;
+}
+
+std::istream& operator>>(std::istream& input, float& value) {
+	input.read(reinterpret_cast<char*>(&value), sizeof(uint32_t));
+	return input;
+}*/

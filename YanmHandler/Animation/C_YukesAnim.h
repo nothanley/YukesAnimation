@@ -1,21 +1,22 @@
 #pragma once
 #include "../DataIO/BinaryIO.h"
+#include "../Codec/C_YukesDecoder.h"
 
-class YukesAnimFile;
+class YukesAnimRegistry;
 class YukesAnim {
 
 public:
-	YukesAnim( YukesAnimFile* file ) {
-		this->m_FileObj = file;
-		InitializeStream();
+	uint32_t m_BoneHash = 0;
+
+	YukesAnim(YukesAnimRegistry* parentRegistry) {
+		this->m_Registry = parentRegistry;
+		GetAnimationTrack();
 	}
 
 private:
-	YukesAnimFile* m_FileObj;
-	uint64_t streamSize;
-	std::ifstream* fs;
+	YukesAnimRegistry* m_Registry;
+	std::istream* stream;
 
-	void InitializeStream();
-	void ReadYanmAttributes();
-	void ReadYANMStream();
+	void GetAnimationTrack();
+	friend YukesDecoder;
 };

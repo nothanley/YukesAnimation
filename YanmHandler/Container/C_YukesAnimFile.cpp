@@ -1,4 +1,4 @@
-#include "C_YukesAnimFile.h"
+#include "../Container/C_YukesAnimFile.h"
 
 using namespace std;
 using namespace BinaryIO;
@@ -14,7 +14,7 @@ void YukesAnimFile::LoadFile() {
 
 void YukesAnimFile::ReadContents() {
 	printf("Opening File: %s\n", filePath.c_str());
-	YukesAnim(this);
+	YukesAnimRegistry(this);
 }
 
 void YukesAnimFile::ValidateContainer() {

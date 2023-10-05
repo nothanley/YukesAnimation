@@ -1,17 +1,8 @@
 #include "C_YukesAnim.h"
-#include "../Container/C_YukesAnimFile.h"
-#include <iostream>
-using namespace std;
+#include "../Container/C_YAnimRegistry.h"
 
-void YukesAnim::InitializeStream() {
-	this->fs = m_FileObj->fs;
-	ReadYANMStream();
-}
-void YukesAnim::ReadYANMStream() {
-	ReadYanmAttributes();
-}
-
-void YukesAnim::ReadYanmAttributes() {
-	m_FileObj->m_Version = ReadShort(*fs);
-	cout << "YANM Version: " << m_FileObj->m_Version;
+void YukesAnim::GetAnimationTrack() {
+	this->stream = m_Registry->fs;
+	YukesDecoder motionTrack(this);
+	motionTrack.DecodeMotionTrack();
 }

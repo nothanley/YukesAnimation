@@ -1,5 +1,5 @@
 #pragma once
-#include "../Animation/C_YukesAnim.h"
+#include "../Container/C_YAnimRegistry.h"
 #pragma comment(lib, "Ws2_32.lib")
 
 using namespace std;
@@ -28,5 +28,5 @@ private:
 
 	void ReadContents();
 	void ValidateContainer();
-	friend class YukesAnim;
+	friend class YukesAnimRegistry;
 };
