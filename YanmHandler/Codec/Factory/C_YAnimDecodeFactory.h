@@ -13,6 +13,7 @@ protected:
     std::istream* fs;
     std::vector<TranslateKey> translations;
     std::vector<MatrixKey> rotations;
+    std::vector<IKKey> ikTransforms;
     std::vector<TranslateKey> other;
     unsigned int runtime = 0;
     Vec4 origin; // matrix translate
@@ -25,8 +26,11 @@ using a pointer map and finds appropriate match to polymorphed class*/
 public:
     DecoderFactory() {
         decoders_[0x0000] = std::make_unique<YAnimFormat00_00>();
+        decoders_[0x0201] = std::make_unique<YAnimFormat02_01>();
+        decoders_[0x0202] = std::make_unique<YAnimFormat02_02>();
         decoders_[0x0204] = std::make_unique<YAnimFormat02_04>();
         decoders_[0x0304] = std::make_unique<YAnimFormat03_04>();
+        decoders_[0x2100] = std::make_unique<YAnimFormat21_00>();
         decoders_[0x2200] = std::make_unique<YAnimFormat22_00>();
         decoders_[0x2300] = std::make_unique<YAnimFormat23_00>();
     }

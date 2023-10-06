@@ -139,11 +139,13 @@
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_02.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h" />
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat04.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h" />
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h" />
     <ClInclude Include="Container\C_YAnimRegistry.h" />

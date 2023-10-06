@@ -18,7 +18,7 @@ public:
             ReadStream();  }
 
         fs->seekg(streamPos);
-        printf("\nMotion Runtime: %d keys\n", runtime);
+        printf("\nMotion Runtime: %d frames\n", runtime);
     }
 
 private:

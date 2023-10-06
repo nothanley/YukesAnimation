@@ -86,7 +86,7 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat04.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h">
@@ -94,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="AnimationUtils.h">
       <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_02.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
