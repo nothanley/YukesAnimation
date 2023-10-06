@@ -3,20 +3,19 @@
 using namespace BinaryIO;
 
 class YAnimFormat; /* Forward declare parent type*/
-class YAnimFormat23_00 : public YAnimFormat {
+class YAnimFormat53_00 : public YAnimFormat {
 
 public:
 
     void Decode(std::istream* stream) override {
         this->fs = stream;
-        printf("\nDecoding 0x23 format...");
+        printf("\nDecoding 0x53 format...");
 
-        /* Holds a constant of 3 bitstreams pertaining 
-        to translation and rotation vectors */
         this->streamPos = fs->tellg();
-        for (streamIndex; streamIndex < 3; streamIndex++) {
+        for (streamIndex; streamIndex < 4; streamIndex++) {
             fs->seekg(streamPos);
-            ReadStream();  }
+            ReadStream();
+        }
 
         fs->seekg(streamPos);
         GetAnimOrigin();
@@ -26,7 +25,7 @@ public:
 private:
     std::streampos streamPos;
     int streamIndex = 0;
-    
+
     void GetAnimOrigin() {
         this->origin = Vec4{ ReadFloatBE(*fs), ReadFloatBE(*fs),
             ReadFloatBE(*fs), ReadFloatBE(*fs) };
@@ -36,24 +35,28 @@ private:
         uint32_t streamPointer = ReadUInt32BE(*fs);
         uint32_t numSegments = ReadUInt32BE(*fs);
         streamPos = fs->tellg();
-        fs->seekg( uint64_t(streamPointer) + 0x8);
+        fs->seekg(uint64_t(streamPointer) + 0x8);
 
         switch (streamIndex) {
         case 0x0:
             ReadRotationStream(&numSegments);
             break;
         case 0x1:
-            ReadKeyStream(&numSegments);
+            ReadOtherStream(&numSegments); /* Unknown */
             break;
         case 0x2:
+            ReadKeyStream(&numSegments); /* Unknown */
+            break;
+        case 0x3:
             ReadTranslateStream(&numSegments);
-            break;   }
+            break;
+        }
     }
 
     void ReadTranslateStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
             Vec3 transform = {  ReadShortBE(*fs),
-                 ReadShortBE(*fs), ReadShortBE(*fs) };
+                 ReadShortBE(*fs),  ReadShortBE(*fs) };
 
             uint16_t numKeys = ReadUShortBE(*fs);
             this->runtime += numKeys;
@@ -61,26 +64,38 @@ private:
         }
     }
 
+    void ReadKeyStream(uint32_t* numSegments) {
+        for (int k = 0; k < *numSegments; k++) {
+            Vec3 transform = { ReadSInt16BE(*fs),
+                 ReadSInt16BE(*fs),  ReadSInt16BE(*fs) };
+
+            uint16_t numKeys = ReadUShortBE(*fs);
+            this->other.push_back(TranslateKey{ transform, numKeys });
+        }
+    }
+
+    void ReadOtherStream(uint32_t* numSegments) {
+        for (int k = 0; k < *numSegments; k++) {
+            Matrix3x3 mat;
+            mat.row0 = { U8RotToDegree * ReadSignedByte(*fs),
+                U8RotToDegree * ReadSignedByte(*fs), U8RotToDegree * ReadSignedByte(*fs) };
+
+            uint8_t numKeys = ReadByte(*fs);
+        }   
+    }
+
     void ReadRotationStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
             Matrix3x3 mat;
-            mat.row0 = { URotToDegree * ReadShortBE(*fs),
-                URotToDegree* ReadShortBE(*fs), URotToDegree* ReadShortBE(*fs) };
+            mat.row0 = { U8RotToDegree * ReadSignedByte(*fs),
+                U8RotToDegree * ReadSignedByte(*fs), U8RotToDegree * ReadSignedByte(*fs) };
 
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->rotations.push_back(MatrixKey{ mat, numKeys });   }
+            uint8_t numKeys = ReadByte(*fs);
+            this->rotations.push_back(MatrixKey{ mat, numKeys });
+        }
     }
 
-    void ReadKeyStream(uint32_t* numSegments) {
-        for (int k = 0; k < *numSegments; k++) {
-            Vec3 transform = {  ReadShortBE(*fs),
-                 ReadShortBE(*fs),  ReadShortBE(*fs) };
-
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->other.push_back(TranslateKey{ transform, numKeys });   }
-    }
 
 
 };
 
- 

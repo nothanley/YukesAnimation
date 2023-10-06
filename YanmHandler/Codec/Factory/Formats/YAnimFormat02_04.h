@@ -10,8 +10,6 @@ public:
         this->fs = stream;
         printf("\nDecoding 0x0204 format...");
 
-        /* Holds a constant of 3 bitstreams pertaining
-        to translation and rotation vectors */
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
@@ -31,21 +29,21 @@ private:
         streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 
-        if (streamIndex == 0x0) { ReadTranslateStream(&numSegments); }
-        else { ReadMatrixStream(&numSegments); }
+        if (streamIndex == 0x0) { ReadOtherStream(&numSegments); }
+        else { ReadRotationStream(&numSegments); }
     }
 
-    void ReadTranslateStream(uint32_t* numSegments) {
+    void ReadOtherStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
             Vec3 transform = { URotToDegree * ReadShortBE(*fs),
                 URotToDegree* ReadShortBE(*fs), URotToDegree* ReadShortBE(*fs) };
 
             uint16_t numKeys = ReadUShortBE(*fs);
             this->runtime += numKeys;
-            this->translations.push_back(TranslateKey{ transform, numKeys });   }
+            this->other.push_back(TranslateKey{ transform, numKeys });   }
     }
 
-    void ReadMatrixStream(uint32_t* numSegments) {
+    void ReadRotationStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
             Matrix3x3 mat;
             uint16_t numKeys = ReadUShortBE(*fs);

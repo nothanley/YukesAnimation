@@ -7,7 +7,7 @@
 int main()
 {
 	/* Replace path with custom file to debug */
-	std::string filePath = "C:/Users/wauke/Desktop/YukesAnim_Examples/punk_sample_3.yanm";
+	std::string filePath = "C:/Users/wauke/Desktop/YukesAnim_Examples/cm_punk_stage.yanm";
 	YukesAnimFile(filePath.c_str());
 	return 0;
 }

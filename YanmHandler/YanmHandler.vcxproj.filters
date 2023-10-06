@@ -62,9 +62,6 @@
     <ClInclude Include="Animation\C_YukesAnim.h">
       <Filter>Header Files\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\C_YukesDecoder.h">
-      <Filter>Header Files\Codec</Filter>
-    </ClInclude>
     <ClInclude Include="Container\C_YAnimRegistry.h">
       <Filter>Header Files\Container</Filter>
     </ClInclude>
@@ -99,6 +96,39 @@
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat43_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat01_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat51_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\C_YukesDecoder.h">
+      <Filter>Header Files\Codec\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat40_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat41_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat42_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat50_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormatA0_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,13 +11,12 @@ public:
         this->fs = stream;
         printf("\nDecoding 0x21 format...");
 
-        /* Holds a constant of 3 bitstreams pertaining 
-        to translation and rotation vectors */
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
             ReadStream();  }
 
+        streamPos = fs->tellg();
         GetAnimOrigin();
         printf("\nMotion Runtime: %d frames\n", runtime);
     }
@@ -27,7 +26,6 @@ private:
     int streamIndex = 0;
     
     void GetAnimOrigin() {
-        fs->seekg(streamPos);
         this->origin = Vec4{ ReadFloatBE(*fs), ReadFloatBE(*fs),
             ReadFloatBE(*fs), ReadFloatBE(*fs) };
     }

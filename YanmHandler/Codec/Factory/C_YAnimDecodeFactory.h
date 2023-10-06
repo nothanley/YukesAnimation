@@ -26,6 +26,7 @@ using a pointer map and finds appropriate match to polymorphed class*/
 public:
     DecoderFactory() {
         decoders_[0x0000] = std::make_unique<YAnimFormat00_00>();
+        decoders_[0x0100] = std::make_unique<YAnimFormat01_00>();
         decoders_[0x0201] = std::make_unique<YAnimFormat02_01>();
         decoders_[0x0202] = std::make_unique<YAnimFormat02_02>();
         decoders_[0x0204] = std::make_unique<YAnimFormat02_04>();
@@ -33,6 +34,8 @@ public:
         decoders_[0x2100] = std::make_unique<YAnimFormat21_00>();
         decoders_[0x2200] = std::make_unique<YAnimFormat22_00>();
         decoders_[0x2300] = std::make_unique<YAnimFormat23_00>();
+        decoders_[0x4300] = std::make_unique<YAnimFormat43_00>();
+        decoders_[0x5300] = std::make_unique<YAnimFormat53_00>();
     }
 
     // Traverses map for encode format, returns null for unsupported type

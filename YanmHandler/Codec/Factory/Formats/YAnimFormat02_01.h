@@ -10,8 +10,6 @@ public:
         this->fs = stream;
         printf("\nDecoding 0x0201 format...");
 
-        /* Holds a constant of 3 bitstreams pertaining
-        to translation and rotation vectors */
         ReadStream();
         fs->seekg(streamPos);
         ReadIKStream();
@@ -30,8 +28,7 @@ private:
         uint32_t numSegments = ReadUInt32BE(*fs);
         this->streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
-
-        ReadTranslateStream(&numSegments);
+        ReadRotationStream(&numSegments);
     }
 
     void ReadIKStream() {
@@ -47,14 +44,16 @@ private:
         ParseIKBitstream(&numSegments);
     }
 
-    void ReadTranslateStream(uint32_t* numSegments) {
+    void ReadRotationStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
-            Vec3 transform = { URotToDegree * ReadShortBE(*fs),
+            Matrix3x3 mat;
+            mat.row0 = { URotToDegree * ReadShortBE(*fs),
                 URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
 
             uint16_t numKeys = ReadUShortBE(*fs);
             this->runtime += numKeys;
-            this->translations.push_back(TranslateKey{ transform, numKeys });    }
+            this->rotations.push_back(MatrixKey{ mat, numKeys });
+        }
     }
 
     void ParseIKBitstream(uint16_t* numSegments) {

@@ -3,12 +3,13 @@
 using namespace BinaryIO;
 
 class YAnimFormat; /* Forward declare parent type*/
-class YAnimFormat02_02 : public YAnimFormat {
+class YAnimFormat42_00 : public YAnimFormat {
 
 public:
+
     void Decode(std::istream* stream) override {
         this->fs = stream;
-        printf("\nDecoding 0x0202 format...");
+        printf("\nDecoding 0x42 format...");
 
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
@@ -30,8 +31,14 @@ private:
         streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 
-        if (streamIndex == 0x0) { ReadRotationStream(&numSegments); }
-        else { ReadTranslateStream(&numSegments); }
+        switch (streamIndex) {
+        case 0x0:
+            ReadRotationStream(&numSegments);
+            break;
+        case 0x1:
+            ReadTranslateStream(&numSegments);
+            break;
+        }
     }
 
     void ReadTranslateStream(uint32_t* numSegments) {
@@ -48,12 +55,14 @@ private:
     void ReadRotationStream(uint32_t* numSegments) {
         for (int k = 0; k < *numSegments; k++) {
             Matrix3x3 mat;
-            mat.row0 = { URotToDegree * ReadShortBE(*fs),
-                URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
+            mat.row0 = { U8RotToDegree * ReadSignedByte(*fs),
+                U8RotToDegree * ReadSignedByte(*fs), U8RotToDegree * ReadSignedByte(*fs) };
 
-            uint16_t numKeys = ReadUShortBE(*fs);
+            uint8_t numKeys = ReadByte(*fs);
             this->rotations.push_back(MatrixKey{ mat, numKeys });
         }
     }
 
+
 };
+

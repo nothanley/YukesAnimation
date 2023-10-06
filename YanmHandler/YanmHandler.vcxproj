@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -140,13 +140,23 @@
     <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_02.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat40_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat41_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat42_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat50_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat43_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat01_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat51_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_00.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h" />
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormatA0_00.h" />
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h" />
     <ClInclude Include="Container\C_YAnimRegistry.h" />
     <ClInclude Include="Container\C_YukesAnimFile.h" />

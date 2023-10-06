@@ -7,6 +7,7 @@
 
 /* Angle conversion constants */
 const float URotToDegree = 0.005493247883;
+const float U8RotToDegree  = 1.417322834;
 
 struct Vec4 {
     float w, x, y, z;
