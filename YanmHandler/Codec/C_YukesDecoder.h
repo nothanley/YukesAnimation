@@ -1,3 +1,4 @@
+/* Interacts with Decoder Factory to decode a serialized yukes animation track*/
 #pragma once
 #include "../Animation/C_YukesAnim.h"
 #include "Factory/C_YAnimDecodeFactory.h"
@@ -19,7 +20,7 @@ public:
 private:
 	YukesAnim* m_SourceTrack;
 	std::unique_ptr<YAnimFormat> decoder_;
-	void ReadTrackAttributes(std::istream* fs);
+	//void ReadTrackAttributes(std::istream* fs);
 	void ReadTrackStream(std::istream* fs);
 };
 

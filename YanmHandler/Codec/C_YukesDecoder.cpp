@@ -6,18 +6,16 @@ void YukesDecoder::DecodeMotionTrack() {
 	this->m_EncodeFormat = ReadUShortBE(*fs);
 	this->m_BitSize = ReadUShortBE(*fs);
 	this->m_BoneHash = ReadUInt32BE(*fs);
-
-	printf("\nEncode Type: %d", m_EncodeFormat);
+	printf("\n\nEncode Type: %d", m_EncodeFormat);
 	ReadTrackStream(fs);
-}
-
-void YukesDecoder::ReadTrackAttributes(std::istream* fs) {
-	 
 }
 
 void YukesDecoder::ReadTrackStream(std::istream* fs) {
 	DecoderFactory factory;
 	decoder_ = factory.CreateDecoder(this->m_EncodeFormat);
-	if (!decoder_) { return; }
-	decoder_->Decode(*fs);
+	if (!decoder_) {
+		printf("\nUnsupported bitstream %d", this->m_EncodeFormat);
+		return; }
+
+	decoder_->Decode(fs);
 }

@@ -1,3 +1,4 @@
+/* Validates YANM file and initializes a stream upon validation success  */
 #pragma once
 #include "../Container/C_YAnimRegistry.h"
 #pragma comment(lib, "Ws2_32.lib")
@@ -13,7 +14,7 @@ class YukesAnimFile{
 public:
 	std::string filePath;
 	uint64_t fileSize;
-	uint32_t m_Version;
+	float m_Version;
 
 	YukesAnimFile(const char* FilePath) {
 		this->filePath = FilePath;

@@ -4,7 +4,7 @@ using namespace std;
 using namespace BinaryIO;
 
 void YukesAnimFile::LoadFile() {
-	this->fs = new std::ifstream(this->filePath);
+	this->fs = new std::ifstream(this->filePath, ios::binary);
 	if (!fs->good())
 		throw("Cannot Open File.");
 
@@ -18,7 +18,7 @@ void YukesAnimFile::ReadContents() {
 }
 
 void YukesAnimFile::ValidateContainer() {
-	fs->seekg(ios_base::beg);
+	fs->seekg(0);
 	uint32_t signature = ReadUInt32(*fs);
 	this->fileSize = ReadUInt32(*fs);
 

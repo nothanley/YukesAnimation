@@ -65,8 +65,8 @@ namespace BinaryIO {
 		endswap(&value);
 		return value;
 	}
-	static short ReadShortBE(istream& in) {
-		short value = 0;
+	static signed short ReadShortBE(istream& in) {
+		signed short value = 0;
 		in.read((char*)&value, 2);
 		endswap(&value);
 		return value;

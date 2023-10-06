@@ -49,7 +49,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AnimationUtils.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,19 +71,19 @@
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h">
       <Filter>Header Files\Codec\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat03.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat00.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat01.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat05.h">
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat04.h">
