@@ -6,7 +6,7 @@ void YukesDecoder::DecodeMotionTrack() {
 	this->m_EncodeFormat = ReadUShortBE(*fs);
 	this->m_BitSize = ReadUShortBE(*fs);
 	this->m_BoneHash = ReadUInt32BE(*fs);
-	printf("\n\nEncode Type: %d", m_EncodeFormat);
+	printf("\n\nEncode Type: %#x", m_EncodeFormat);
 	ReadTrackStream(fs);
 }
 

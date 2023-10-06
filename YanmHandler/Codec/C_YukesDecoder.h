@@ -20,7 +20,6 @@ public:
 private:
 	YukesAnim* m_SourceTrack;
 	std::unique_ptr<YAnimFormat> decoder_;
-	//void ReadTrackAttributes(std::istream* fs);
 	void ReadTrackStream(std::istream* fs);
 };
 

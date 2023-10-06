@@ -18,7 +18,6 @@ public:
             ReadStream(); }
 
         fs->seekg(streamPos);
-        this->origin = Vec4{ 0,0,0,0 };
         printf("\nMotion Runtime: %d keys\n", runtime);
     }
 
@@ -32,7 +31,7 @@ private:
         streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 
-        if (streamIndex == 0x1) { ReadTranslateStream(&numSegments); }
+        if (streamIndex == 0x0) { ReadTranslateStream(&numSegments); }
         else { ReadMatrixStream(&numSegments); }
     }
 

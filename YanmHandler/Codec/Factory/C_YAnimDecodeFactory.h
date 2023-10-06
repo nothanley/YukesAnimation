@@ -27,6 +27,7 @@ public:
         decoders_[0x0000] = std::make_unique<YAnimFormat00_00>();
         decoders_[0x0204] = std::make_unique<YAnimFormat02_04>();
         decoders_[0x0304] = std::make_unique<YAnimFormat03_04>();
+        decoders_[0x2200] = std::make_unique<YAnimFormat22_00>();
         decoders_[0x2300] = std::make_unique<YAnimFormat23_00>();
     }
 

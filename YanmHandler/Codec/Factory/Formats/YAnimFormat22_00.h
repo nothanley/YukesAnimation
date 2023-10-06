@@ -14,12 +14,12 @@ public:
         /* Holds a constant of 3 bitstreams pertaining
         to translation and rotation vectors */
         this->streamPos = fs->tellg();
-        for (streamIndex; streamIndex < 3; streamIndex++) {
+        for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
             ReadStream();
         }
 
-        GetAnimOrigin();
+        fs->seekg(streamPos);
         printf("\nMotion Runtime: %d frames\n", runtime);
     }
 
@@ -28,7 +28,6 @@ private:
     int streamIndex = 0;
 
     void GetAnimOrigin() {
-        fs->seekg(streamPos);
         this->origin = Vec4{ ReadFloatBE(*fs), ReadFloatBE(*fs),
             ReadFloatBE(*fs), ReadFloatBE(*fs) };
     }
