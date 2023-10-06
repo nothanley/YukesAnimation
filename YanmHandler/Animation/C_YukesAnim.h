@@ -1,26 +1,23 @@
+/* Creates and maintains objects for Yukes motion tracks*/
+#pragma once
 #include "../DataIO/BinaryIO.h"
-using namespace std;
+#include "../Codec/C_YukesDecoder.h"
 
+class YukesAnimRegistry;
 class YukesAnim {
 
 public:
-	YukesAnim( std::ifstream* stream ) {
-		this->fs = stream;
-		ReadYANMStream();
+	uint32_t m_BoneHash = 0;
+
+	YukesAnim(YukesAnimRegistry* parentRegistry) {
+		this->m_Registry = parentRegistry;
+		CreateMotionTrack();
 	}
 
 private:
-	uint64_t streamSize;
-	std::ifstream* fs;
+	YukesAnimRegistry* m_Registry;
+	std::istream* stream;
 
-	void ReadYanmAttributes() {
-		uint32_t magic = ReadUInt32(*fs);
-		this->streamSize = ReadUInt32(*fs);
-	}
-
-	void ReadYANMStream() {
-		ReadYanmAttributes();
-
-	}
-
+	void CreateMotionTrack();
+	friend YukesDecoder;
 };
