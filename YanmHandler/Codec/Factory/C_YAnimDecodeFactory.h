@@ -2,20 +2,21 @@
 #include <iostream>
 #include <map>
 #include <memory>
-#include "../../AnimationUtils.h"
+#include <istream>
+#include "../../Animation/AnimationUtils.h"
 
 /* Base decoder, morphs into known formats */
+class YukesAnim;
 class YAnimFormat {
 public:
     virtual ~YAnimFormat() {}
-    virtual void Decode(std::istream* fs) = 0;
+    virtual void Decode() = 0;
+    void Initialize(std::istream* stream, YukesAnim* parent) {
+        this->m_Track = parent;
+        this->fs = stream;  }
 protected:
     std::istream* fs;
-    std::vector<TranslateKey> translations;
-    std::vector<MatrixKey> rotations;
-    std::vector<TranslateKey> other;
-    unsigned int runtime = 0;
-    Vec4 origin; // matrix translate
+    YukesAnim* m_Track;
 };
 
 #include "YukesAnimEnum.h"
@@ -25,9 +26,16 @@ using a pointer map and finds appropriate match to polymorphed class*/
 public:
     DecoderFactory() {
         decoders_[0x0000] = std::make_unique<YAnimFormat00_00>();
+        decoders_[0x0100] = std::make_unique<YAnimFormat01_00>();
+        decoders_[0x0201] = std::make_unique<YAnimFormat02_01>();
+        decoders_[0x0202] = std::make_unique<YAnimFormat02_02>();
         decoders_[0x0204] = std::make_unique<YAnimFormat02_04>();
         decoders_[0x0304] = std::make_unique<YAnimFormat03_04>();
+        decoders_[0x2100] = std::make_unique<YAnimFormat21_00>();
+        decoders_[0x2200] = std::make_unique<YAnimFormat22_00>();
         decoders_[0x2300] = std::make_unique<YAnimFormat23_00>();
+        decoders_[0x4300] = std::make_unique<YAnimFormat43_00>();
+        decoders_[0x5300] = std::make_unique<YAnimFormat53_00>();
     }
 
     // Traverses map for encode format, returns null for unsupported type

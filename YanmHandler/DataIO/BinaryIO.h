@@ -71,12 +71,6 @@ namespace BinaryIO {
 		endswap(&value);
 		return value;
 	}
-	static uint8_t ReadByteBE(istream& in) {
-		uint8_t value = 0;
-		in.read((char*)&value, 1);
-		endswap(&value);
-		return value;
-	}
 	static float ReadFloatBE(istream& in) {
 		float value = 0;
 		in.read(reinterpret_cast<char*>(&value), sizeof(uint32_t));
@@ -128,6 +122,11 @@ namespace BinaryIO {
 	static short ReadShort(istream& in) {
 		short value = 0;
 		in.read((char*)&value, 2);
+		return value;
+	}
+	static int8_t ReadSignedByte(istream& in) {
+		int8_t value = 0;
+		in.read((char*)&value, 1);
 		return value;
 	}
 	static uint8_t ReadByte(istream& in) {

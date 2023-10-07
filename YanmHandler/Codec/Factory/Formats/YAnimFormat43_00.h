@@ -4,17 +4,20 @@ using namespace AnimUtils;
 using namespace BinaryIO;
 
 class YAnimFormat; /* Forward declare parent type*/
-class YAnimFormat22_00 : public YAnimFormat {
+class YAnimFormat43_00 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x22 format...");
+        printf("\nDecoding 0x43 format...");
+
         this->streamPos = fs->tellg();
-        for (streamIndex; streamIndex < 2; streamIndex++) {
+        for (streamIndex; streamIndex < 3; streamIndex++) {
             fs->seekg(streamPos);
-            ReadStream();  }
+            ReadStream();
+        }
 
         fs->seekg(streamPos);
+        GetAnimOrigin(fs, &m_Track->origin);
     }
 
 private:
@@ -29,11 +32,15 @@ private:
 
         switch (streamIndex) {
         case 0x0:
-            DecodeRotationStream16S(fs, &numSegments, &m_Track->m_Rotations);
+            DecodeRotationStream8S(fs, &numSegments, &m_Track->m_Rotations);
             break;
         case 0x1:
+            DecodeDeltaStreamS16(fs, &numSegments, &m_Track->m_CustomTransforms); /* Unknown */
+            break;
+        case 0x2:
             DecodeTransStream16S(fs, &numSegments, &m_Track->m_Translations);
-            break; }
+            break;
+        }
     }
 
 

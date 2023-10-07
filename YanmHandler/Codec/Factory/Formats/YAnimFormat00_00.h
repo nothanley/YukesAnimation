@@ -1,12 +1,13 @@
 /* Decodes unique bitstream */
-class YAnimFormat;
+#pragma once
 
+class YAnimFormat;
 class YAnimFormat00_00 : public YAnimFormat {
 public:
     /* This codec defines an empty motion. Therefore we set a zero transform*/
-    void Decode(std::istream* fs) override {
-        this->origin = Vec4{ 0,0,0,0 };
-        this->translations.resize(0);
+    void Decode() override {
+        this->m_Track->origin = Vec4{ 0,0,0,0 };
+        this->m_Track->m_Translations.resize(0);
     }
 };
 
