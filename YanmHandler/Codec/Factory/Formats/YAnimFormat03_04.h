@@ -25,7 +25,7 @@ private:
     void ReadStream() {
         uint32_t streamPointer = ReadUInt32BE(*fs);
         uint32_t numSegments = ReadUInt32BE(*fs);
-        if (streamIndex == 0x1) { GetAnimOrigin(fs,&m_Track->origin); }
+        if (streamIndex == 0x1) { GetAnimOrigin(fs,&m_Track->m_StreamDelta); }
         this->streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 

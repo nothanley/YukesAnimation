@@ -9,18 +9,18 @@ void YukesAnim::CreateMotionTrack() {
 }
 
 void YukesAnim::GetTrackIntrinsics() {
-	/* todo perform delta ops */
+	ApplyVectorDeltas( &this->m_Translations, &this->m_StreamDelta);
 	GetTrackRuntime();
 	printf("\nMotion Runtime: %d frames\n", this->runtime);
 }
+
 
 template <typename KeyType>
 void GetVectorRuntime(const std::vector<KeyType>& keys, unsigned int* runtime) {
 	if (keys.size() == 0) { return; }
 	*runtime = 0;
-	for (const auto& key : keys) {
+	for (const auto& key : keys)
 		*runtime += key.duration;
-	}
 }
 
 void YukesAnim::GetTrackRuntime() {

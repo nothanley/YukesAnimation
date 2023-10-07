@@ -8,7 +8,7 @@ class YukesAnimRegistry {
 public:
 	virtual ~YukesAnimRegistry() {
 		for (auto& track : tracks)
-			delete track;	}
+			delete track; }
 
 	YukesAnimRegistry( YukesAnimFile* file ) {
 		this->m_FileObj = file;
@@ -25,4 +25,11 @@ private:
 	void InitializeStream();
 	void GetYanmAttributes();
 	friend class YukesAnim;
+};
+
+struct YukesAnimNode {
+	YukesAnimRegistry* animation;
+	std::string name;
+	uint32_t address;
+	uint32_t size;
 };

@@ -154,3 +154,13 @@ void AnimUtils::DecodeRotationStream8S(std::istream* fs, uint32_t* numSegments, 
         rotations->push_back(MatrixKey{ mat, numKeys });
     }
 }
+
+void AnimUtils::ApplyVectorDeltas(std::vector<TranslateKey>* vector, Vec4* delta) {
+    for (auto& key : *vector) {
+        key.transform.x *= delta->w;
+        key.transform.y *= delta->w;
+        key.transform.z *= delta->w;
+        key.transform.x += delta->x;
+        key.transform.y += delta->y;
+        key.transform.z += delta->z; }
+}

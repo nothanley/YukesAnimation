@@ -3,18 +3,18 @@
 using namespace std;
 using namespace BinaryIO;
 
-void YukesAnimFile::LoadFile() {
-	this->fs = new std::ifstream(this->filePath, ios::binary);
+void YukesAnimFile::Load() {
+	if (this->fs == nullptr)
+		this->fs = new std::ifstream(this->filePath, ios::binary);
 	if (!fs->good())
-		throw("Cannot Open File.");
-
+		throw("Cannot read YANM stream.");
 	ValidateContainer();
 	if (this->isOk) { ReadContents(); }
 }
 
 void YukesAnimFile::ReadContents() {
 	printf("Opening File: %s\n", filePath.c_str());
-	YukesAnimRegistry(this);
+	this->m_Registry = new YukesAnimRegistry(this);
 }
 
 void YukesAnimFile::ValidateContainer() {

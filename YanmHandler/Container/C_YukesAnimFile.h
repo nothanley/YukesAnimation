@@ -15,18 +15,24 @@ public:
 	std::string filePath;
 	uint64_t fileSize;
 	float m_Version;
+	YukesAnimRegistry* m_Registry = nullptr;
+	~YukesAnimFile() {}
 
 	YukesAnimFile(const char* FilePath) {
 		this->filePath = FilePath;
-		LoadFile();
+		Load();
+		fs->close();
 	}
 
-	void LoadFile();
+	YukesAnimFile(std::ifstream* stream) {
+		this->fs = stream;
+		Load();
+	}
 
 private:
-	std::ifstream* fs;
+	std::ifstream* fs = nullptr;
 	bool isOk = false;
-
+	void Load();
 	void ReadContents();
 	void ValidateContainer();
 	friend class YukesAnimRegistry;

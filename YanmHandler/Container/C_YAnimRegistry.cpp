@@ -16,7 +16,7 @@ void YukesAnimRegistry::InitializeStream() {
 		// Collect all animation tracks
 		this->tracks.push_back(new YukesAnim(this));
 	}
-	printf("\nAll tracks loaded.");
+	printf("\nAll tracks loaded.\n");
 }
 
 void YukesAnimRegistry::GetYanmAttributes() {
