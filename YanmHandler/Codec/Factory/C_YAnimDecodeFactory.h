@@ -2,21 +2,21 @@
 #include <iostream>
 #include <map>
 #include <memory>
-#include "../../AnimationUtils.h"
+#include <istream>
+#include "../../Animation/AnimationUtils.h"
 
 /* Base decoder, morphs into known formats */
+class YukesAnim;
 class YAnimFormat {
 public:
     virtual ~YAnimFormat() {}
-    virtual void Decode(std::istream* fs) = 0;
+    virtual void Decode() = 0;
+    void Initialize(std::istream* stream, YukesAnim* parent) {
+        this->m_Track = parent;
+        this->fs = stream;  }
 protected:
     std::istream* fs;
-    std::vector<TranslateKey> translations;
-    std::vector<MatrixKey> rotations;
-    std::vector<IKKey> ikTransforms;
-    std::vector<TranslateKey> other;
-    unsigned int runtime = 0;
-    Vec4 origin; // matrix translate
+    YukesAnim* m_Track;
 };
 
 #include "YukesAnimEnum.h"

@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationUtils.cpp" />
+    <ClCompile Include="Animation\AnimationUtils.cpp" />
     <ClCompile Include="Animation\C_YukesAnim.cpp" />
     <ClCompile Include="Codec\C_YukesDecoder.cpp" />
     <ClCompile Include="Container\C_YAnimRegistry.cpp" />
@@ -135,7 +135,7 @@
     <ClCompile Include="C_YanmHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationUtils.h" />
+    <ClInclude Include="Animation\AnimationUtils.h" />
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />

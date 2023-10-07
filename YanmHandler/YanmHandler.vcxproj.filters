@@ -48,7 +48,7 @@
     <ClCompile Include="C_YanmHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationUtils.cpp">
+    <ClCompile Include="Animation\AnimationUtils.cpp">
       <Filter>Header Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h">
       <Filter>Header Files\Codec\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationUtils.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_02.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
@@ -110,9 +107,6 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat51_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\C_YukesDecoder.h">
-      <Filter>Header Files\Codec\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat40_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
@@ -130,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA0_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\AnimationUtils.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\C_YukesDecoder.h">
+      <Filter>Header Files\Codec</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

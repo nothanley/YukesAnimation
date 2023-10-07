@@ -1,23 +1,21 @@
 /* Decodes unique bitstream */
-#include "../../../AnimationUtils.h"
+#include "../../../Animation/AnimationUtils.h"
+using namespace AnimUtils;
 using namespace BinaryIO;
 
 class YAnimFormat; /* Forward declare parent type*/
 class YAnimFormat02_02 : public YAnimFormat {
 
 public:
-    void Decode(std::istream* stream) override {
-        this->fs = stream;
+    void Decode() override {
         printf("\nDecoding 0x0202 format...");
 
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
-            ReadStream();
-        }
+            ReadStream(); }
 
         fs->seekg(streamPos);
-        printf("\nMotion Runtime: %d frames\n", runtime);
     }
 
 private:
@@ -30,30 +28,10 @@ private:
         streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 
-        if (streamIndex == 0x0) { ReadRotationStream(&numSegments); }
-        else { ReadTranslateStream(&numSegments); }
-    }
-
-    void ReadTranslateStream(uint32_t* numSegments) {
-        for (int k = 0; k < *numSegments; k++) {
-            Vec3 transform = {  ReadShortBE(*fs),
-                 ReadShortBE(*fs),  ReadShortBE(*fs) };
-
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->runtime += numKeys;
-            this->translations.push_back(TranslateKey{ transform, numKeys });
-        }
-    }
-
-    void ReadRotationStream(uint32_t* numSegments) {
-        for (int k = 0; k < *numSegments; k++) {
-            Matrix3x3 mat;
-            mat.row0 = { URotToDegree * ReadShortBE(*fs),
-                URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
-
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->rotations.push_back(MatrixKey{ mat, numKeys });
-        }
+        if (streamIndex == 0x0) {
+            DecodeRotationStream16S(fs, &numSegments, &m_Track->m_Rotations); }
+        else {
+            DecodeTransStream16S(fs,&numSegments,&m_Track->m_Translations); }
     }
 
 };

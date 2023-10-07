@@ -1,4 +1,5 @@
 /* Forward declares classes for all known formats*/
+#pragma once
 #include "Formats/YAnimFormat00_00.h"
 #include "Formats/YAnimFormat01_00.h"
 #include "Formats/YAnimFormat02_04.h"

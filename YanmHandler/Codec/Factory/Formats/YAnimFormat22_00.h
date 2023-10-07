@@ -1,24 +1,20 @@
 /* Decodes unique bitstream */
-#include "../../../AnimationUtils.h"
+#include "../../../Animation/AnimationUtils.h"
+using namespace AnimUtils;
 using namespace BinaryIO;
 
 class YAnimFormat; /* Forward declare parent type*/
 class YAnimFormat22_00 : public YAnimFormat {
 
 public:
-
-    void Decode(std::istream* stream) override {
-        this->fs = stream;
+    void Decode() override {
         printf("\nDecoding 0x22 format...");
-
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
-            ReadStream();
-        }
+            ReadStream();  }
 
         fs->seekg(streamPos);
-        printf("\nMotion Runtime: %d frames\n", runtime);
     }
 
 private:
@@ -33,34 +29,11 @@ private:
 
         switch (streamIndex) {
         case 0x0:
-            ReadRotationStream(&numSegments);
+            DecodeRotationStream16S(fs, &numSegments, &m_Track->m_Rotations);
             break;
         case 0x1:
-            ReadTranslateStream(&numSegments);
-            break;
-        }
-    }
-
-    void ReadTranslateStream(uint32_t* numSegments) {
-        for (int k = 0; k < *numSegments; k++) {
-            Vec3 transform = { ReadShortBE(*fs),
-                 ReadShortBE(*fs), ReadShortBE(*fs) };
-
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->runtime += numKeys;
-            this->translations.push_back(TranslateKey{ transform, numKeys });
-        }
-    }
-
-    void ReadRotationStream(uint32_t* numSegments) {
-        for (int k = 0; k < *numSegments; k++) {
-            Matrix3x3 mat;
-            mat.row0 = { URotToDegree * ReadShortBE(*fs),
-                URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
-
-            uint16_t numKeys = ReadUShortBE(*fs);
-            this->rotations.push_back(MatrixKey{ mat, numKeys });
-        }
+            DecodeTransStream16S(fs, &numSegments, &m_Track->m_Translations);
+            break; }
     }
 
 
