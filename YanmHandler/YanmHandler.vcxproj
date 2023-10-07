@@ -139,7 +139,7 @@
     <ClCompile Include="Codec\C_YukesDecoder.cpp" />
     <ClCompile Include="Container\C_YAnimRegistry.cpp" />
     <ClCompile Include="Container\C_YukesAnimFile.cpp" />
-    <ClCompile Include="C_YanmHandler.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Acts\C_YukesActsFile.h" />

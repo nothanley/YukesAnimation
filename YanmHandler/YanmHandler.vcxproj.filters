@@ -48,7 +48,7 @@
     <ClCompile Include="Codec\C_YukesDecoder.cpp">
       <Filter>Header Files\Codec</Filter>
     </ClCompile>
-    <ClCompile Include="C_YanmHandler.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Animation\AnimationUtils.cpp">
