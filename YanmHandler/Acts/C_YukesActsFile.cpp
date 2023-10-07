@@ -24,7 +24,7 @@ void YukesActsFile::ValidateContainer() {
 		this->isLegacyFormat = false;
 		return;	}
 
-	// Check for legacy format
+	/* Validate legacy format*/
 	fs->seekg(0x24);
 	signature = ReadUInt32(*fs);
 	if (ntohl(signature) == ROOT) {
@@ -36,8 +36,12 @@ void YukesActsFile::ValidateContainer() {
 void YukesActsFile::ReadLegacy() {
 	this->m_Contents = new YukesActsLegacy(fs,this);
 	m_Contents->LoadTree();
+
+	/* Load YANM for requested index*/
+	if (requestIndex == -1) { return; }
+	YukesAnimNode* node = m_Contents->GetNode(this->requestIndex);
 }
 
 void YukesActsFile::ReadModern() {
-
+	//todo
 }

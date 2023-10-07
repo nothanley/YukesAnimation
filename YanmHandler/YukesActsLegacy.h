@@ -1,3 +1,4 @@
+/* Subclass of YukesActs - Loads animation trees for pre-(2019?) format*/
 #pragma once
 #include "Acts/C_YukesActsFile.h"
 #include "Container/C_YAnimRegistry.h"
@@ -15,6 +16,8 @@ public:
 	YukesActsLegacy(std::istream* stream, YukesActsFile* parent) {
 		this->fs = stream;
 		this->m_FileObj = parent; }
+
+	YukesAnimNode* GetNode(int index) override;
 	void LoadTree() override;
 
 protected:
@@ -22,7 +25,6 @@ protected:
 	YukesActsFile* m_FileObj;
 private:
 	std::streampos streamPos;
-	uint32_t animSize;
 	uint32_t tableSize;
 	uint32_t streamSize;
 	uint32_t tableBegin;
@@ -30,6 +32,7 @@ private:
 
 	void InitializeTree();
 	void CollectNodes();
-	void GetNodeData();
-	void ReadYukesMotion();
+	void AddNode();
+	void ReadYukesMotion(YukesAnimNode* node);
+	void DebugLoadAllNodes();
 };

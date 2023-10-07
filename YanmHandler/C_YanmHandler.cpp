@@ -19,12 +19,14 @@ std::vector<std::string> GetFilesInDirectory(const std::string& path) {
 int main()
 {
 	/* Replace path with custom path to debug */
-    std::vector<std::string> paths = GetFilesInDirectory(
-        "C:/Users/wauke/Desktop/YukesAnim_Examples/CMPunk_2015/@EVZ/131.bpe"    );
-	
+    //std::vector<std::string> paths = GetFilesInDirectory(
+        //"C:/Users/wauke/Desktop/YukesAnim_Examples/CMPunk_2015/@EVZ/131.bpe"    );
+    
     /* Opens all files in directory*/
-    for (auto& path : paths)
-        YukesActsFile(path.c_str());
+    //for (auto& path : paths)
+        //YukesActsFile( path.c_str() , /* Item index */ 0x3 );
+
+    YukesActsFile("C:/Users/wauke/Desktop/YukesAnim_Examples/0000.bin", /* Item index */ 0x3);
 
 	return 0;
 }

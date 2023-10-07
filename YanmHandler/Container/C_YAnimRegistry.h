@@ -30,4 +30,6 @@ private:
 struct YukesAnimNode {
 	YukesAnimRegistry* animation;
 	std::string name;
+	uint32_t address;
+	uint32_t size;
 };
