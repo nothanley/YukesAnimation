@@ -1,6 +1,6 @@
 #pragma once
 #include "C_YukesActsFile.h"
-#include "../YukesActsLegacy.h"
+#include "YukesActsLegacy.h"
 using namespace std;
 using namespace BinaryIO;
 

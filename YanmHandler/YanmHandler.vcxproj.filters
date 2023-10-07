@@ -57,10 +57,10 @@
     <ClCompile Include="Acts\C_YukesActsFile.cpp">
       <Filter>Header Files\Acts</Filter>
     </ClCompile>
-    <ClCompile Include="YukesActsLegacy.cpp">
+    <ClCompile Include="Acts\YukesActsModern.cpp">
       <Filter>Header Files\Acts</Filter>
     </ClCompile>
-    <ClCompile Include="YukesActsModern.cpp">
+    <ClCompile Include="Acts\YukesActsLegacy.cpp">
       <Filter>Header Files\Acts</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,10 +146,10 @@
     <ClInclude Include="Acts\C_YukesActsFile.h">
       <Filter>Header Files\Acts</Filter>
     </ClInclude>
-    <ClInclude Include="YukesActsLegacy.h">
+    <ClInclude Include="Acts\YukesActsModern.h">
       <Filter>Header Files\Acts</Filter>
     </ClInclude>
-    <ClInclude Include="YukesActsModern.h">
+    <ClInclude Include="Acts\YukesActsLegacy.h">
       <Filter>Header Files\Acts</Filter>
     </ClInclude>
   </ItemGroup>

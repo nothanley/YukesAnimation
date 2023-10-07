@@ -1,5 +1,5 @@
 #include "YukesActsLegacy.h"
-#include "Container/C_YukesAnimFile.h"
+#include "../Container/C_YukesAnimFile.h"
 #include <sstream>
 using namespace BinaryIO;
 

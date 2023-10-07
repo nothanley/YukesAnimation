@@ -132,17 +132,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Acts\C_YukesActsFile.cpp" />
+    <ClCompile Include="Acts\YukesActsLegacy.cpp" />
+    <ClCompile Include="Acts\YukesActsModern.cpp" />
     <ClCompile Include="Animation\AnimationUtils.cpp" />
     <ClCompile Include="Animation\C_YukesAnim.cpp" />
     <ClCompile Include="Codec\C_YukesDecoder.cpp" />
     <ClCompile Include="Container\C_YAnimRegistry.cpp" />
     <ClCompile Include="Container\C_YukesAnimFile.cpp" />
     <ClCompile Include="C_YanmHandler.cpp" />
-    <ClCompile Include="YukesActsLegacy.cpp" />
-    <ClCompile Include="YukesActsModern.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Acts\C_YukesActsFile.h" />
+    <ClInclude Include="Acts\YukesActsLegacy.h" />
+    <ClInclude Include="Acts\YukesActsModern.h" />
     <ClInclude Include="Animation\AnimationUtils.h" />
     <ClInclude Include="Animation\C_YukesAnim.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
@@ -169,8 +171,6 @@
     <ClInclude Include="Container\C_YAnimRegistry.h" />
     <ClInclude Include="Container\C_YukesAnimFile.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
-    <ClInclude Include="YukesActsLegacy.h" />
-    <ClInclude Include="YukesActsModern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

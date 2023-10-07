@@ -1,7 +1,7 @@
 /* Subclass of YukesActs - Loads animation trees for pre-(2019?) format*/
 #pragma once
-#include "Acts/C_YukesActsFile.h"
-#include "Container/C_YAnimRegistry.h"
+#include "../Acts/C_YukesActsFile.h"
+#include "../Container/C_YAnimRegistry.h"
 
 class YukesActsLegacy : public YukesActs{
 public:
