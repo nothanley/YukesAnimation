@@ -83,4 +83,5 @@ namespace AnimUtils {
 
     void DecodeRotationStream8S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations);
 
+    void ApplyVectorDeltas(std::vector<TranslateKey>* vector, Vec4* delta);
 };

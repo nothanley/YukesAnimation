@@ -13,7 +13,7 @@ public:
 	uint16_t m_BitSize = 0;
 	uint32_t m_BoneHash = 0;
 
-	Vec4 origin{0,0,0,0};
+	Vec4 m_StreamDelta{0,0,0,0};
 	std::vector<TranslateKey> m_Translations;
 	std::vector<MatrixKey> m_Rotations;
 	std::vector<IKKey> m_IKTransforms;

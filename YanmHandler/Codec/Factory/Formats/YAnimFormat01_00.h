@@ -13,7 +13,7 @@ public:
         ReadStream();
 
         fs->seekg(streamPos);
-        GetAnimOrigin(fs,&m_Track->origin);
+        GetAnimOrigin(fs,&m_Track->m_StreamDelta);
     }
 
 private:

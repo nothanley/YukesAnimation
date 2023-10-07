@@ -31,6 +31,9 @@
     <Filter Include="Header Files\Codec\Factory\Formats">
       <UniqueIdentifier>{e38b967e-7a4c-47b8-b391-6d90d84dffac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Acts">
+      <UniqueIdentifier>{c92732f7-6f8b-4752-85de-e1a0ab7b0800}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\C_YukesAnimFile.cpp">
@@ -50,6 +53,15 @@
     </ClCompile>
     <ClCompile Include="Animation\AnimationUtils.cpp">
       <Filter>Header Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Acts\C_YukesActsFile.cpp">
+      <Filter>Header Files\Acts</Filter>
+    </ClCompile>
+    <ClCompile Include="YukesActsLegacy.cpp">
+      <Filter>Header Files\Acts</Filter>
+    </ClCompile>
+    <ClCompile Include="YukesActsModern.cpp">
+      <Filter>Header Files\Acts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="Codec\C_YukesDecoder.h">
       <Filter>Header Files\Codec</Filter>
+    </ClInclude>
+    <ClInclude Include="Acts\C_YukesActsFile.h">
+      <Filter>Header Files\Acts</Filter>
+    </ClInclude>
+    <ClInclude Include="YukesActsLegacy.h">
+      <Filter>Header Files\Acts</Filter>
+    </ClInclude>
+    <ClInclude Include="YukesActsModern.h">
+      <Filter>Header Files\Acts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
