@@ -35,14 +35,16 @@ private:
 	void ValidateContainer();
 };
 
-class YukesAnimNode;
+#include "../Container/C_YAnimRegistry.h"
 class YukesActs {
 public:
 	virtual ~YukesActs() {}
 	virtual void LoadTree() = 0;
+	virtual void LoadAllNodes() = 0;
 	virtual YukesAnimNode* GetNode(int index) { return nullptr; }
-	unsigned int numAnims = 0;
+	uint32_t numAnims = 0;
 	std::string name = "";
+	std::vector<YukesAnimNode> nodes;
 
 protected:
 	std::istream* fs;

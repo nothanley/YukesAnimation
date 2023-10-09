@@ -5,13 +5,7 @@
 
 class YukesActsLegacy : public YukesActs{
 public:
-	unsigned int numAnims = 0;
-	std::string name = "";
-	std::vector<YukesAnimNode> nodes;
-
-	~YukesActsLegacy() {
-		for (auto& node : nodes)
-			delete node.animation;	}
+	~YukesActsLegacy() {}
 
 	YukesActsLegacy(std::istream* stream, YukesActsFile* parent) {
 		this->fs = stream;
@@ -19,7 +13,7 @@ public:
 
 	YukesAnimNode* GetNode(int index) override;
 	void LoadTree() override;
-
+	void LoadAllNodes() override;
 protected:
 	std::istream* fs;
 	YukesActsFile* m_FileObj;
@@ -34,5 +28,4 @@ private:
 	void CollectNodes();
 	void AddNode();
 	void ReadYukesMotion(YukesAnimNode* node);
-	void DebugLoadAllNodes();
 };

@@ -15,12 +15,14 @@ public:
 		InitializeStream();
 	}
 
-private:
-	YukesAnimFile* m_FileObj;
 	uint64_t m_size;
 	uint16_t m_numTracks;
+	uint32_t m_runtime;
 	std::vector<YukesAnim*> tracks;
+
+private:
 	std::ifstream* fs;
+	YukesAnimFile* m_FileObj;
 
 	void InitializeStream();
 	void GetYanmAttributes();

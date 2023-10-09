@@ -11,12 +11,13 @@ void YukesActsLegacy::LoadTree() {
     //DebugLoadAllNodes();
 }
 
-void YukesActsLegacy::DebugLoadAllNodes() {
+void YukesActsLegacy::LoadAllNodes() {
     /* To reduce compute, do not load YANM streams
        unless user calls for 'GetNode' */
+    this->fs = new std::ifstream(this->m_FileObj->filePath, ios::binary);
     for (auto& node : this->nodes)
         ReadYukesMotion(&node);
-    printf("\nAll motions collected.\n");
+    //printf("\nAll nodes collected.\n");
 }
 
 void YukesActsLegacy::InitializeTree() {
@@ -59,6 +60,7 @@ void YukesActsLegacy::AddNode() {
 
 YukesAnimNode* YukesActsLegacy::GetNode(int index) {
     if (index > this->nodes.size()) { return nullptr; }
+    this->fs = new std::ifstream(this->m_FileObj->filePath, ios::binary);
     YukesAnimNode* node = &this->nodes.at(index);
     /* Read YANM buffer, return pointer */
     ReadYukesMotion(node);

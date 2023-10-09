@@ -8,7 +8,7 @@ class YAnimFormat40_00 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x40 format...");
+        //        printf("\nDecoding 0x40 format...");
         ReadStream();
         fs->seekg(streamPos);
     }

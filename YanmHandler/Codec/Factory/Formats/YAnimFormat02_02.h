@@ -8,7 +8,7 @@ class YAnimFormat02_02 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x0202 format...");
+        // printf("\nDecoding 0x0202 format...");
 
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {

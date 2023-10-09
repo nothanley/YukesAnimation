@@ -8,7 +8,7 @@ class YAnimFormat02_01 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x0201 format...");
+        //printf("\nDecoding 0x0201 format...");
         ReadStream();
         InitializeIK();
     }

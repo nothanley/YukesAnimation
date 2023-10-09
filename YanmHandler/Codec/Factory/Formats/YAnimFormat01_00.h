@@ -9,7 +9,7 @@ class YAnimFormat01_00 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x0100 format...");
+        //printf("\nDecoding 0x0100 format...");
         ReadStream();
 
         fs->seekg(streamPos);

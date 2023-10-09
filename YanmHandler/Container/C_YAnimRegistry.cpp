@@ -14,9 +14,11 @@ void YukesAnimRegistry::InitializeStream() {
 	GetYanmAttributes();
 	for (int i = 0; i < this->m_numTracks; i++) {
 		// Collect all animation tracks
-		this->tracks.push_back(new YukesAnim(this));
+		YukesAnim* anim = new YukesAnim(this);
+		this->tracks.push_back(anim);
+		if (anim->runtime > this->m_runtime) { this->m_runtime = anim->runtime; }
 	}
-	printf("\nAll tracks loaded.\n");
+	//printf("\nAll tracks loaded.\n");
 }
 
 void YukesAnimRegistry::GetYanmAttributes() {
@@ -28,6 +30,6 @@ void YukesAnimRegistry::GetYanmAttributes() {
 		/* 5.0 spans through more modern iterations, 4.0 spans through PS4 & PS3 gen*/
 		throw("Unsupported YANM format");}
 
-	printf("\nYANM version %.1f", m_FileObj->m_Version );
+	//printf("\nYANM version %.1f", m_FileObj->m_Version );
 }
 

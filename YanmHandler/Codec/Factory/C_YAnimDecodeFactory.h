@@ -27,6 +27,7 @@ public:
     DecoderFactory() {
         decoders_[0x0000] = std::make_unique<YAnimFormat00_00>();
         decoders_[0x0100] = std::make_unique<YAnimFormat01_00>();
+        decoders_[0x0200] = std::make_unique<YAnimFormat02_00>();
         decoders_[0x0201] = std::make_unique<YAnimFormat02_01>();
         decoders_[0x0202] = std::make_unique<YAnimFormat02_02>();
         decoders_[0x0204] = std::make_unique<YAnimFormat02_04>();
@@ -34,8 +35,15 @@ public:
         decoders_[0x2100] = std::make_unique<YAnimFormat21_00>();
         decoders_[0x2200] = std::make_unique<YAnimFormat22_00>();
         decoders_[0x2300] = std::make_unique<YAnimFormat23_00>();
+        decoders_[0x4000] = std::make_unique<YAnimFormat40_00>();
+        decoders_[0x4100] = std::make_unique<YAnimFormat41_00>();
+        decoders_[0x4200] = std::make_unique<YAnimFormat42_00>();
         decoders_[0x4300] = std::make_unique<YAnimFormat43_00>();
+        decoders_[0x5000] = std::make_unique<YAnimFormat50_00>();
+        decoders_[0x5100] = std::make_unique<YAnimFormat51_00>();
+        decoders_[0x5200] = std::make_unique<YAnimFormat52_00>();
         decoders_[0x5300] = std::make_unique<YAnimFormat53_00>();
+        decoders_[0xA000] = std::make_unique<YAnimFormatA0_00>();
     }
 
     // Traverses map for encode format, returns null for unsupported type
