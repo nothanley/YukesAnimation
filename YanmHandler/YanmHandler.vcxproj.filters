@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Acts">
       <UniqueIdentifier>{c92732f7-6f8b-4752-85de-e1a0ab7b0800}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hash">
+      <UniqueIdentifier>{2c0665a8-73d3-4391-85d4-f6b791c9fa9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\C_YukesAnimFile.cpp">
@@ -55,9 +58,6 @@
       <Filter>Header Files\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Acts\C_YukesActsFile.cpp">
-      <Filter>Header Files\Acts</Filter>
-    </ClCompile>
-    <ClCompile Include="Acts\YukesActsModern.cpp">
       <Filter>Header Files\Acts</Filter>
     </ClCompile>
     <ClCompile Include="Acts\YukesActsLegacy.cpp">
@@ -146,11 +146,14 @@
     <ClInclude Include="Acts\C_YukesActsFile.h">
       <Filter>Header Files\Acts</Filter>
     </ClInclude>
-    <ClInclude Include="Acts\YukesActsModern.h">
-      <Filter>Header Files\Acts</Filter>
-    </ClInclude>
     <ClInclude Include="Acts\YukesActsLegacy.h">
       <Filter>Header Files\Acts</Filter>
+    </ClInclude>
+    <ClInclude Include="Hash\C_YukesHash32.h">
+      <Filter>Header Files\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

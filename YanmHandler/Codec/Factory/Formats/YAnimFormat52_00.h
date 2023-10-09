@@ -8,7 +8,7 @@ class YAnimFormat52_00 : public YAnimFormat {
 
 public:
     void Decode() override {
-        printf("\nDecoding 0x52 format...");
+        //     printf("\nDecoding 0x52 format...");
 
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 3; streamIndex++) {
@@ -16,7 +16,7 @@ public:
             ReadStream();  }
 
         fs->seekg(streamPos);
-        GetAnimOrigin(fs,&m_Track->m_StreamDelta);
+        //GetAnimOrigin(fs,&m_Track->m_StreamDelta);
     }
 
 private:

@@ -11,7 +11,7 @@ void YukesAnim::CreateMotionTrack() {
 void YukesAnim::GetTrackIntrinsics() {
 	ApplyVectorDeltas( &this->m_Translations, &this->m_StreamDelta);
 	GetTrackRuntime();
-	printf("\nMotion Runtime: %d frames\n", this->runtime);
+	//printf("\nMotion Runtime: %d frames\n", this->runtime);
 }
 
 

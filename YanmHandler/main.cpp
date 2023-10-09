@@ -18,15 +18,11 @@ std::vector<std::string> GetFilesInDirectory(const std::string& path) {
 
 int main()
 {
-	/* Replace path with custom path to debug */
-    //std::vector<std::string> paths = GetFilesInDirectory(
-        //"C:/Users/wauke/Desktop/YukesAnim_Examples/CMPunk_2015/@EVZ/131.bpe"    );
-    
-    /* Opens all files in directory*/
-    //for (auto& path : paths)
-        //YukesActsFile( path.c_str() , /* Item index */ 0x3 );
+    std::string path = "C://Users//wauke//Desktop//0000.dat";
+    YukesActsFile anims(path.c_str());
 
-    YukesActsFile("C:/Users/wauke/Desktop/YukesAnim_Examples/0000.bin", /* Item index */ 0x3);
-
-	return 0;
+    anims.m_Contents->LoadAllNodes();
+    uint32_t value = anims.m_Contents->numAnims;
+    printf("\nValue: %d", value);
+    return 0;
 }

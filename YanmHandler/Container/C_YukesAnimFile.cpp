@@ -13,7 +13,7 @@ void YukesAnimFile::Load() {
 }
 
 void YukesAnimFile::ReadContents() {
-	printf("Opening File: %s\n", filePath.c_str());
+	//printf("Opening File: %s\n", filePath.c_str());
 	this->m_Registry = new YukesAnimRegistry(this);
 }
 

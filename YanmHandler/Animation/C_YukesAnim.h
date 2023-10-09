@@ -8,6 +8,7 @@ class YukesDecoder;
 class YukesAnim {
 
 public:
+	bool hasIK;
 	unsigned int runtime = 0;
 	uint16_t m_EncodeFormat = 0;
 	uint16_t m_BitSize = 0;
@@ -23,6 +24,7 @@ public:
 		this->m_Registry = parentRegistry;
 		CreateMotionTrack();
 		GetTrackIntrinsics();
+		if (this->m_IKTransforms.size() > 0) { hasIK = true; }
 	}
 
 private:
