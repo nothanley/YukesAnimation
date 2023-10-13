@@ -13,9 +13,9 @@ public:
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
-            ReadStream();  }
-
-        GetAnimOrigin(fs, &m_Track->m_StreamDelta);
+            ReadStream(); 
+        }
+        fs->seekg(streamPos);
     }
 
 private:
@@ -30,6 +30,10 @@ private:
 
         switch (streamIndex) {
         case 0x0:
+            fs->seekg(streamPos);
+            GetAnimOrigin(fs, &m_Track->m_StreamDelta);
+            streamPos = fs->tellg();
+            fs->seekg(uint64_t(streamPointer) + 0x8);
             DecodeEulerStreamS8(fs,&numSegments,&m_Track->m_CustomTransforms);
             break;
         case 0x1:

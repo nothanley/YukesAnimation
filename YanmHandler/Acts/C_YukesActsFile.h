@@ -24,6 +24,8 @@ public:
 		fs->close();
 	}
 
+	void close() { this->fs->close(); };
+
 private:
 	std::ifstream* fs;
 	bool isOk = false;

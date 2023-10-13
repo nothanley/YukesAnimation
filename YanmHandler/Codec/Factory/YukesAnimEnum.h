@@ -1,7 +1,10 @@
 /* Includes all format subclasses */
 #pragma once
 #include "Formats/YAnimFormat00_00.h"
+#include "Formats/YAnimFormat00_01.h"
+#include "Formats/YAnimFormat00_04.h"
 #include "Formats/YAnimFormat01_00.h"
+#include "Formats/YAnimFormat01_04.h"
 #include "Formats/YAnimFormat02_00.h"
 #include "Formats/YAnimFormat02_04.h"
 #include "Formats/YAnimFormat02_01.h"
@@ -19,3 +22,4 @@
 #include "Formats/YAnimFormat52_00.h"
 #include "Formats/YAnimFormat53_00.h"
 #include "Formats/YAnimFormatA0_00.h"
+#include "Formats/YAnimFormatA2_00.h"

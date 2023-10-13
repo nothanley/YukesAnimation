@@ -11,6 +11,8 @@ Global
 		Debug|x86 = Debug|x86
 		Exe|x64 = Exe|x64
 		Exe|x86 = Exe|x86
+		Library|x64 = Library|x64
+		Library|x86 = Library|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
@@ -23,10 +25,14 @@ Global
 		{886D9741-46DC-473A-840E-295633D98C9F}.Exe|x64.Build.0 = Exe|x64
 		{886D9741-46DC-473A-840E-295633D98C9F}.Exe|x86.ActiveCfg = Exe|Win32
 		{886D9741-46DC-473A-840E-295633D98C9F}.Exe|x86.Build.0 = Exe|Win32
-		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x64.ActiveCfg = Release|x64
-		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x64.Build.0 = Release|x64
-		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x86.ActiveCfg = Release|Win32
-		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x86.Build.0 = Release|Win32
+		{886D9741-46DC-473A-840E-295633D98C9F}.Library|x64.ActiveCfg = Library|x64
+		{886D9741-46DC-473A-840E-295633D98C9F}.Library|x64.Build.0 = Library|x64
+		{886D9741-46DC-473A-840E-295633D98C9F}.Library|x86.ActiveCfg = Library|Win32
+		{886D9741-46DC-473A-840E-295633D98C9F}.Library|x86.Build.0 = Library|Win32
+		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x64.ActiveCfg = Debug|x64
+		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x64.Build.0 = Debug|x64
+		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x86.ActiveCfg = Library|Win32
+		{886D9741-46DC-473A-840E-295633D98C9F}.Release|x86.Build.0 = Library|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

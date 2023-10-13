@@ -4,9 +4,9 @@ using namespace BinaryIO;
 
 void AnimUtils::StreamMatrix3x3(std::istream* fs, Matrix3x3* mat){
 	// float URotToDegree = 1.0; pretransform
-	mat->row0 = Vec3{ URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
-	mat->row1 = Vec3{ URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
-	mat->row2 = Vec3{ URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
+	mat->row0 = Vec3{ U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
+	mat->row1 = Vec3{ U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
+	mat->row2 = Vec3{ U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
 }
 
 Vec4 AnimUtils::UnpackMatrixVector(Matrix3x4 mat) {
@@ -15,20 +15,48 @@ Vec4 AnimUtils::UnpackMatrixVector(Matrix3x4 mat) {
     out.y = (mat.row0.y * mat.row1.y) + mat.row2.y;
     out.x = (mat.row0.x * mat.row1.x) + mat.row2.x;
     out.w = (mat.row0.w * mat.row1.w) + mat.row2.w;
+    out.x *= -1;
     return out;
 }
 
-Vec4 AnimUtils::ExtractOrigin(std::istream* fs) {
-    uint32_t var0 = ReadByte(*fs) << 0x8;
-    uint32_t var1 = ReadByte(*fs) << 0x8;
-    uint32_t var2 = ReadByte(*fs) << 0x8;
-    uint32_t var3 = ReadByte(*fs) << 0x8;
+Vec4 AnimUtils::Extract32bitOrigin(std::istream* fs) {
+    std::vector<uint8_t> stream;
+    for (int i = 0; i < 8; i++)
+        stream.push_back(ReadByte(*fs));
 
-    var0 |= ReadByte(*fs);
-    var1 |= ReadByte(*fs);
-    var2 |= ReadByte(*fs);
-    var3 |= ReadByte(*fs);
-    return Vec4{ (float)var3, (float)var2, (float)var1, (float)var0 };
+    uint32_t value0 = (stream[0] << 0x8) | stream[4];
+    uint32_t value1 = (stream[1] << 0x8) | stream[5];
+    uint32_t value2 = (stream[2] << 0x8) | stream[6];
+    uint32_t value3 = (stream[3] << 0x8) | stream[7];
+
+    return Vec4{ (float)value3, (float)value2, (float)value1, (float)value0 };
+}
+
+Vec4 AnimUtils::Extract24bitOrigin(std::istream* fs) {
+    std::vector<uint8_t> stream;
+    for (int i = 0; i < 6; i++)
+        stream.push_back(ReadByte(*fs));
+
+    uint32_t value0 = (stream[4]>> 0x4) | (stream[0] << 0x4);
+    uint32_t value1 = (stream[4] & 0xF) | (stream[1] << 0x4);
+    uint32_t value2 = (stream[5]>> 0x4) | (stream[2] << 0x4);
+    uint32_t value3 = (stream[0] & 0xF) | (stream[3] << 0x4) ;
+
+
+    return Vec4{ (float)value3, (float)value2, (float)value1, (float)value0 };
+}
+
+Vec4 AnimUtils::Extract16bitOrigin(std::istream* fs) {
+    std::vector<uint8_t> stream;
+    for (int i = 0; i < 4; i++)
+        stream.push_back(ReadByte(*fs));
+
+    uint32_t value0 = stream[0];
+    uint32_t value1 = stream[1];
+    uint32_t value2 = stream[2];
+    uint32_t value3 = stream[3];
+
+    return Vec4{ (float)value3, (float)value2, (float)value1, (float)value0 };
 }
 
 float AnimUtils::ExtractBits(uint16_t ubits) {
@@ -44,8 +72,19 @@ float AnimUtils::ExtractBits(uint16_t ubits) {
     return *reinterpret_cast<float*>(&result);
 }
 
-Vec4 AnimUtils::ShiftIKMatrix(std::istream* fs, Matrix3x4 mat) {
-    mat.row0 = ExtractOrigin(fs);
+Vec4 AnimUtils::ShiftIKMatrix(std::istream* fs, Matrix3x4 mat, uint8_t encodeSize ) {
+    switch (encodeSize) {
+    case 0xD1:
+        mat.row0 = Extract32bitOrigin(fs);
+        break;
+    case 0xC9:
+        mat.row0 = Extract24bitOrigin(fs);
+        break;
+    case 0xC1:
+        mat.row0 = Extract16bitOrigin(fs);
+        break;
+    default:
+        break;   }
     return UnpackMatrixVector(mat);
 }
 
@@ -62,8 +101,8 @@ void AnimUtils::DecodeTransStream16S(std::istream* fs, uint32_t* numSegments, st
 void AnimUtils::DecodeRotationStream16S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations) {
     for (int k = 0; k < *numSegments; k++) {
         Matrix3x3 mat;
-        mat.row0 = { URotToDegree * ReadShortBE(*fs),
-            URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
+        mat.row0 = { U16RotToDegree * ReadShortBE(*fs),
+            U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
 
         uint16_t numKeys = ReadUShortBE(*fs);
         rotations->push_back(MatrixKey{ mat, numKeys });
@@ -95,9 +134,16 @@ void AnimUtils::DecodeIKStream(std::istream* fs, uint16_t* numSegments, uint8_t*
 
         switch (*ikType) {
         case (0xD1):
-            transform = AnimUtils::ShiftIKMatrix(fs, *origin);
+            transform = AnimUtils::ShiftIKMatrix(fs, *origin, *ikType);
             break;
-        case (0xC0):
+        case (0xC9):
+            transform = AnimUtils::ShiftIKMatrix(fs, *origin, *ikType);
+            break;
+        case (0xC1):
+            transform = AnimUtils::ShiftIKMatrix(fs, *origin, *ikType);
+            break;
+        default:
+            transform = Vec4{ 0,0,0,0 };
             break;
         }
 
@@ -116,8 +162,8 @@ void AnimUtils::ReadRotationMatrices(std::istream* fs, uint32_t* numSegments, st
 
 void AnimUtils::DecodeEulerStreamS16(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection) {
     for (int k = 0; k < *numSegments; k++) {
-        Vec3 transform = { URotToDegree * ReadShortBE(*fs),
-            URotToDegree * ReadShortBE(*fs), URotToDegree * ReadShortBE(*fs) };
+        Vec3 transform = { U16RotToDegree * ReadShortBE(*fs),
+            U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
 
         uint16_t numKeys = ReadUShortBE(*fs);
         collection->push_back(TranslateKey{ transform, numKeys });
@@ -135,22 +181,54 @@ void AnimUtils::DecodeDeltaStreamS16(std::istream* fs, uint32_t* numSegments, st
 }
 
 void AnimUtils::DecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection) {
+
     for (int k = 0; k < *numSegments; k++) {
-        Vec3 transform = { U8RotToDegree * ReadSignedByte(*fs),
-            U8RotToDegree * ReadSignedByte(*fs), U8RotToDegree * ReadSignedByte(*fs) };
+        Vec3 transform = { DegUnk * ReadSignedByte(*fs) * 0.5,
+            DegUnk * ReadSignedByte(*fs) * 0.5, DegUnk* ReadSignedByte(*fs) * 0.5 };
 
         uint8_t numKeys = ReadByte(*fs);
         collection->push_back(TranslateKey{ transform, numKeys });
     }
+
 }
+
+void AnimUtils::DebugDecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection) {
+
+    std::streampos pos = fs->tellg();
+
+    for (int k = 0; k < *numSegments; k++) {
+
+        // Grab first transform
+        Vec3 transform_A = { DegUnk * ReadSignedByte(*fs) * 0.5,
+            DegUnk * ReadSignedByte(*fs) * 0.5, DegUnk * ReadSignedByte(*fs) * 0.5 };
+        uint8_t numKeys = ReadByte(*fs);
+
+        // Messy implementation of runtime ops
+        if ( (k + 1) > *numSegments) { break; }
+        
+        // Grab second transform
+        pos = fs->tellg();
+        Vec3 transform_B = { DegUnk * ReadSignedByte(*fs) * 0.5,
+           DegUnk * ReadSignedByte(*fs) * 0.5, DegUnk * ReadSignedByte(*fs) * 0.5 };
+
+        Vec3 test = transform_A * transform_B;
+
+        // Seek back to first stream
+        fs->seekg(pos);
+
+    }
+
+}
+
+
 
 void AnimUtils::DecodeRotationStream8S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations) {
     for (int k = 0; k < *numSegments; k++) {
         Matrix3x3 mat;
-        mat.row0 = { U8RotToDegree * ReadSignedByte(*fs),
-            U8RotToDegree * ReadSignedByte(*fs), U8RotToDegree * ReadSignedByte(*fs) };
+        mat.row0 = { SByteToDeg * ReadByte(*fs),
+            SByteToDeg* ReadByte(*fs), SByteToDeg* ReadByte(*fs) };
 
-        uint16_t numKeys = ReadByte(*fs);
+        uint8_t numKeys = ReadByte(*fs);
         rotations->push_back(MatrixKey{ mat, numKeys });
     }
 }

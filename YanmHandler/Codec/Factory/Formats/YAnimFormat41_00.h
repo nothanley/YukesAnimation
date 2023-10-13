@@ -10,7 +10,7 @@ public:
     void Decode() override {
         //  printf("\nDecoding 0x41 format...");
         this->streamPos = fs->tellg();
-        for (streamIndex; streamIndex < 3; streamIndex++) {
+        for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
             ReadStream(); }
 

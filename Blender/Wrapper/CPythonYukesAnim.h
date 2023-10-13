@@ -21,6 +21,7 @@ extern "C" __declspec(dllexport) const uint64_t * GetBranchData(const char* path
 
     uint64_t* result = new uint64_t[branchValues.size()];
     std::copy(branchValues.begin(), branchValues.end(), result);
+    yukesFile.close();
     return result;
 }
 
@@ -49,6 +50,7 @@ extern "C" __declspec(dllexport) void GetBranchNames(const char* path, char*** s
         (*strings)[i] = new char[len];
         strcpy_s((*strings)[i], len, str);
     }
+    yukesFile.close();
 }
 
 extern "C" __declspec(dllexport) const uint32_t* GetNodeBoneHashes(const char* path, int index, /* Stores Vector Size*/ int* size)
@@ -65,6 +67,7 @@ extern "C" __declspec(dllexport) const uint32_t* GetNodeBoneHashes(const char* p
     *size = static_cast<int>(vec.size());
     uint32_t* result = new uint32_t[vec.size()];
     std::copy(vec.begin(), vec.end(), result);
+    yukesFile.close();
     return result;
 }
 
@@ -105,6 +108,7 @@ extern "C" __declspec(dllexport) const float* GetTranslationKeysForBone(const ch
     float* result = new float[transforms.size()];
     std::copy(transforms.begin(), transforms.end(), result);
 
+    yukesFile.close();
     return result;
 }
 
@@ -137,6 +141,7 @@ extern "C" __declspec(dllexport) const float* GetRotationKeysForBone(const char*
     float* result = new float[transforms.size()];
     std::copy(transforms.begin(), transforms.end(), result);
 
+    yukesFile.close();
     return result;
 }
 

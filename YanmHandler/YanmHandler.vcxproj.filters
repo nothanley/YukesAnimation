@@ -71,9 +71,6 @@
     <ClInclude Include="Container\C_YukesAnimFile.h">
       <Filter>Header Files\Container</Filter>
     </ClInclude>
-    <ClInclude Include="Animation\C_YukesAnim.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Container\C_YAnimRegistry.h">
       <Filter>Header Files\Container</Filter>
     </ClInclude>
@@ -153,6 +150,21 @@
       <Filter>Header Files\Hash</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_00.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\C_YukesAnim.h">
+      <Filter>Header Files\Codec</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_04.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat01_04.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_01.h">
+      <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormatA2_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
   </ItemGroup>

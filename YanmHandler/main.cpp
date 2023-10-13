@@ -18,11 +18,19 @@ std::vector<std::string> GetFilesInDirectory(const std::string& path) {
 
 int main()
 {
-    std::string path = "C://Users//wauke//Desktop//0000.dat";
-    YukesActsFile anims(path.c_str());
+    //std::vector<std::string> paths = GetFilesInDirectory("C://Users//wauke//Desktop///14412.bpe");
 
+    YukesActsFile anims("C://Users//wauke//Desktop///0000.dat");
     anims.m_Contents->LoadAllNodes();
-    uint32_t value = anims.m_Contents->numAnims;
-    printf("\nValue: %d", value);
+
+    //for (const auto& path : paths) {
+        //printf("\nNewFile: %s", path.c_str());
+        //YukesActsFile anims(path.c_str());
+        //anims.m_Contents->LoadAllNodes();
+        //uint32_t value = anims.m_Contents->numAnims;
+        //printf("\nValue: %d", value);
+    //}
+
+   
     return 0;
 }

@@ -9,13 +9,12 @@ class YAnimFormat21_00 : public YAnimFormat {
 public:
     void Decode() override {
         //     printf("\nDecoding 0x21 format...");
-
         this->streamPos = fs->tellg();
         for (streamIndex; streamIndex < 2; streamIndex++) {
             fs->seekg(streamPos);
             ReadStream();  }
 
-        streamPos = fs->tellg();
+        fs->seekg(streamPos);
         GetAnimOrigin(fs,&m_Track->m_StreamDelta);
     }
 

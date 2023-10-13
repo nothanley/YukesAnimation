@@ -6,8 +6,11 @@
 #include <istream>
 
 /* Angle conversion constants */
-const float URotToDegree = 0.005493247883;
-const float U8RotToDegree  = 1.417322834;
+const float U16RotToDegree = 0.005493247883;
+const float DegConst  = 1.417322834;
+const float DegUnk = 0.000681769;
+const float SByteToDeg = 1.417322834;
+const float S8RotToDegree = 2.834645669;
 
 struct Vec4 {
     float w, x, y, z;
@@ -16,6 +19,27 @@ struct Vec4 {
 struct Vec3 {
 	float x, y, z;
 };
+
+inline Vec3& operator*(Vec3& vec_a, Vec3& vec_b) {
+    Vec3 result = { vec_a.x * vec_b.x,
+                    vec_a.y * vec_b.y,
+                    vec_a.z * vec_b.z };
+    return result;
+}
+
+inline Vec3& operator-(Vec3& vec_a, Vec3& vec_b) {
+    Vec3 result = { vec_a.x - vec_b.x,
+                    vec_a.y - vec_b.y,
+                    vec_a.z - vec_b.z };
+    return result;
+}
+
+inline Vec3& operator+(Vec3& vec_a, Vec3& vec_b) {
+    Vec3 result = { vec_a.x + vec_b.x,
+                    vec_a.y + vec_b.y,
+                    vec_a.z + vec_b.z };
+    return result;
+}
 
 struct Matrix3x3 {
     Vec3 row0;
@@ -59,11 +83,15 @@ namespace AnimUtils {
 
     Vec4 UnpackMatrixVector(Matrix3x4 mat);
 
-    Vec4 ExtractOrigin(std::istream* fs);
+    Vec4 Extract32bitOrigin(std::istream* fs);
+
+    Vec4 Extract24bitOrigin(std::istream* fs);
+
+    Vec4 Extract16bitOrigin(std::istream* fs);
 
     float ExtractBits(uint16_t ubits);
 
-    Vec4 ShiftIKMatrix(std::istream* fs, Matrix3x4 mat);
+    Vec4 ShiftIKMatrix(std::istream* fs, Matrix3x4 mat, uint8_t encodeSize);
 
     void GetAnimOrigin(std::istream* fs, Vec4* origin);
 
@@ -80,6 +108,8 @@ namespace AnimUtils {
     void DecodeDeltaStreamS16(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection);
 
     void DecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection);
+
+    void DebugDecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection);
 
     void DecodeRotationStream8S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations);
 
