@@ -1,5 +1,6 @@
 /* Defines common logic and structures found throughout all serialized motion streams */
 #pragma once
+#include "vector4.h"
 #include <windows.h> 
 #include <winsock.h>
 #include <vector>
@@ -12,157 +13,15 @@ const float DegUnk = 0.000681769;
 const float SByteToDeg = 1.417322834;
 const float S8RotToDegree = 2.834645669;
 
-struct Vec4 {
-    float w, x, y, z;
-};
 
 struct Vec3 {
 	float x, y, z;
 };
 
-
-inline Vec4 sqrt(const Vec4& vec_a) {
-    Vec4 result = { sqrtf(vec_a.w),
-                    sqrtf(vec_a.x),
-                    sqrtf(vec_a.y),
-                    sqrtf(vec_a.z) };
-    return result;
-}
-
-inline Vec4 operator*(const Vec4& vec_a, const Vec4& vec_b) {
-    Vec4 result = { vec_a.w * vec_b.w,
-                    vec_a.x * vec_b.x,
-                    vec_a.y * vec_b.y,
-                    vec_a.z * vec_b.z };
-    return result;
-}
-
-inline Vec4 operator/(const Vec4& vec_a, const Vec4& vec_b) {
-    Vec4 result = { vec_a.w / vec_b.w,
-                    vec_a.x / vec_b.x,
-                    vec_a.y / vec_b.y,
-                    vec_a.z / vec_b.z };
-    return result;
-}
-
-
-inline Vec4 operator+(const Vec4& vec_a, const Vec4& vec_b) {
-    Vec4 result = { vec_a.w + vec_b.w,
-                    vec_a.x + vec_b.x,
-                    vec_a.y + vec_b.y,
-                    vec_a.z + vec_b.z };
-    return result;
-}
-
-inline Vec4 operator-(const Vec4& vec_a, const Vec4& vec_b) {
-    Vec4 result = { vec_a.w - vec_b.w,
-                    vec_a.x - vec_b.x,
-                    vec_a.y - vec_b.y,
-                    vec_a.z - vec_b.z,};
-    return result;
-}
-
-inline Vec4 operator-(const Vec4& vec_a, const float& sub ) {
-    Vec4 result = { vec_a.w - sub,
-                    vec_a.x - sub,
-                    vec_a.y - sub,
-                    vec_a.z - sub };
-    return result;
-}
-
-inline Vec4 operator-(const float& sub,const Vec4& vec_a) {
-    Vec4 result = { sub - vec_a.w,
-                    sub - vec_a.x,
-                    sub - vec_a.y,
-                    sub - vec_a.z };
-    return result;
-}
-
-inline Vec4 operator*(const Vec4& vec_a, const float& b) {
-    Vec4 result = { vec_a.w * b,
-                    vec_a.x * b,
-                    vec_a.y * b,
-                    vec_a.z * b };
-    return result;
-}
-
-inline Vec4 operator+(const Vec4& vec_a, const float& b) {
-    Vec4 result = { vec_a.w + b,
-                    vec_a.x + b,
-                    vec_a.y + b,
-                    vec_a.z + b };
-    return result;
-}
-
-inline Vec4 operator/(const float& sub,const Vec4& vec_a) {
-    Vec4 result = { sub / vec_a.w,
-                    sub / vec_a.x,
-                    sub / vec_a.y,
-                    sub / vec_a.z };
-    return result;
-}
-
-inline Vec4 operator/(const Vec4& vec_a, const float& sub) {
-    Vec4 result = { vec_a.w / sub,
-                    vec_a.x / sub,
-                    vec_a.y / sub,
-                    vec_a.z / sub };
-    return result;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-inline Vec3 operator*(const Vec3& vec_a, const Vec3& vec_b) {
-    Vec3 result = { vec_a.x * vec_b.x,
-                    vec_a.y * vec_b.y,
-                    vec_a.z * vec_b.z };
-    return result;
-}
-
-
-inline Vec3 operator-(const Vec3& vec_a, const Vec3& vec_b) {
-    Vec3 result = { vec_a.x - vec_b.x,
-                    vec_a.y - vec_b.y,
-                    vec_a.z - vec_b.z };
-    return result;
-}
-
-inline Vec3 operator+(const Vec3& vec_a, const Vec3& vec_b) {
-    Vec3 result = { vec_a.x + vec_b.x,
-                    vec_a.y + vec_b.y,
-                    vec_a.z + vec_b.z };
-    return result;
-}
-
-
-
-
 struct Matrix3x3 {
     Vec3 row0;
     Vec3 row1;
     Vec3 row2;
-};
-
-struct Matrix3x4 {
-    Vec4 row0;
-    Vec4 row1;
-    Vec4 row2;
-};
-
-struct Matrix4x4 {
-    Vec4 row0;
-    Vec4 row1;
-    Vec4 row2;
-    Vec4 row3;
 };
 
 struct TranslateKey {
@@ -179,6 +38,37 @@ struct IKKey {
     Vec4 transform;
     uint16_t duration;
 };
+
+
+static Vec3 operator*(const Vec3& vec_a, const Vec3& vec_b) {
+    Vec3 result = { vec_a.x * vec_b.x,
+                    vec_a.y * vec_b.y,
+                    vec_a.z * vec_b.z };
+    return result;
+}
+
+static Vec3 operator*(const Vec3& vec_a, const float& mult) {
+    Vec3 result = { vec_a.x * mult,
+                    vec_a.y * mult,
+                    vec_a.z * mult };
+    return result;
+}
+
+static Vec3 operator-(const Vec3& vec_a, const Vec3& vec_b) {
+    Vec3 result = { vec_a.x - vec_b.x,
+                    vec_a.y - vec_b.y,
+                    vec_a.z - vec_b.z };
+    return result;
+}
+
+static Vec3 operator+(const Vec3& vec_a, const Vec3& vec_b) {
+    Vec3 result = { vec_a.x + vec_b.x,
+                    vec_a.y + vec_b.y,
+                    vec_a.z + vec_b.z };
+    return result;
+}
+
+
 
 
 

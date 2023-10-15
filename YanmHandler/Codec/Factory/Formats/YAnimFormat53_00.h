@@ -1,6 +1,6 @@
 /* Decodes unique bitstream */
 #include "../../../Animation/AnimationUtils.h"
-#include "../../../RotationHelper.h"
+#include "../../../Animation/RotationHelper.h"
 
 using namespace AnimUtils;
 using namespace BinaryIO;
@@ -21,6 +21,8 @@ public:
         GetAnimOrigin(fs,&m_Track->m_StreamDelta);
 
         RotationHelper debug(this->vec_a, this->vec_b);
+
+        this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
 private:

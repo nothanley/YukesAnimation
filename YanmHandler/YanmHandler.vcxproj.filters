@@ -37,6 +37,9 @@
     <Filter Include="Header Files\Hash">
       <UniqueIdentifier>{2c0665a8-73d3-4391-85d4-f6b791c9fa9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Animation\Utils">
+      <UniqueIdentifier>{6a160f75-94a4-466a-965e-908043275444}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\C_YukesAnimFile.cpp">
@@ -164,11 +167,17 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA2_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="RotationHelper.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
       <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\RotationHelper.h">
+      <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\vector4.h">
+      <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="QuatEulerConv.h">
+      <Filter>Header Files\Animation\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
