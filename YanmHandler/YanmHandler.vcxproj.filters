@@ -104,9 +104,6 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat43_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
@@ -166,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA2_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationHelper.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -192,6 +192,39 @@ void AnimUtils::DecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std
 
 }
 
+void TransformVector(Vec3* vector) {
+    *vector = *vector * Vec3{ 0.159155,0.159155,0.159155 };
+}
+
+void InterpretU8Byte(Vec3* vector) {
+
+    *vector = *vector * Vec3{ 0.5,0.5,0.5 };
+}
+
+void ReadAndTransformByte(float* value) {
+
+    Vec3 vector = Vec3{ *value,*value,*value };
+    InterpretU8Byte( &vector );
+
+}
+
+Vec3 ReadVector3f(std::istream* fs) {
+
+    float A_X = (float)ReadSignedByte(*fs) * DegUnk;
+    float A_Y = (float)ReadSignedByte(*fs) * DegUnk;
+    float A_Z = (float)ReadSignedByte(*fs) * DegUnk;
+    uint8_t numKeys = ReadByte(*fs);
+
+    Vec3 vector = Vec3{ A_X,A_Y,A_Z };
+    vector = vector * Vec3{ 0.5,0.5,0.5 };
+
+    /*ReadAndTransformByte(&A_X);
+    ReadAndTransformByte(&A_Y);
+    ReadAndTransformByte(&A_Z);*/
+
+    return vector;
+}
+
 void AnimUtils::DebugDecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection) {
 
     std::streampos pos = fs->tellg();
@@ -199,19 +232,17 @@ void AnimUtils::DebugDecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments
     for (int k = 0; k < *numSegments; k++) {
 
         // Grab first transform
-        Vec3 transform_A = { DegUnk * ReadSignedByte(*fs) * 0.5,
-            DegUnk * ReadSignedByte(*fs) * 0.5, DegUnk * ReadSignedByte(*fs) * 0.5 };
-        uint8_t numKeys = ReadByte(*fs);
+        Vec3 vector_a = ReadVector3f(fs);
 
         // Messy implementation of runtime ops
         if ( (k + 1) > *numSegments) { break; }
         
         // Grab second transform
         pos = fs->tellg();
-        Vec3 transform_B = { DegUnk * ReadSignedByte(*fs) * 0.5,
-           DegUnk * ReadSignedByte(*fs) * 0.5, DegUnk * ReadSignedByte(*fs) * 0.5 };
 
-        Vec3 test = transform_A * transform_B;
+        Vec3 vector_b = ReadVector3f(fs);
+
+        Vec3 test = vector_a * vector_b;
 
         // Seek back to first stream
         fs->seekg(pos);
@@ -221,17 +252,27 @@ void AnimUtils::DebugDecodeEulerStreamS8(std::istream* fs, uint32_t* numSegments
 }
 
 
+void AnimUtils::Get8bSignedByteArray(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection) {
+    for (int k = 0; k < *numSegments; k++) {
+        Vec3 transform = { ReadSignedByte(*fs),ReadSignedByte(*fs),ReadSignedByte(*fs) };
+
+        uint8_t numKeys = ReadByte(*fs);
+        collection->push_back(TranslateKey{ transform, numKeys });
+    }
+}
 
 void AnimUtils::DecodeRotationStream8S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations) {
     for (int k = 0; k < *numSegments; k++) {
         Matrix3x3 mat;
         mat.row0 = { SByteToDeg * ReadByte(*fs),
-            SByteToDeg* ReadByte(*fs), SByteToDeg* ReadByte(*fs) };
+            SByteToDeg * ReadByte(*fs), SByteToDeg * ReadByte(*fs) };
 
         uint8_t numKeys = ReadByte(*fs);
         rotations->push_back(MatrixKey{ mat, numKeys });
     }
 }
+
+
 
 void AnimUtils::ApplyVectorDeltas(std::vector<TranslateKey>* vector, Vec4* delta) {
 

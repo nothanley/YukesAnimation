@@ -244,6 +244,7 @@
     <ClInclude Include="Container\C_YukesAnimFile.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
     <ClInclude Include="Hash\C_YukesHash32.h" />
+    <ClInclude Include="RotationHelper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

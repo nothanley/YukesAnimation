@@ -15,17 +15,9 @@ void YukesAnim::GetTrackIntrinsics() {
 }
 
 
-template <typename KeyType>
-void GetVectorRuntime(const std::vector<KeyType>& keys, unsigned int* runtime) {
-	if (keys.size() == 0) { return; }
-	*runtime = 0;
-	for (const auto& key : keys)
-		*runtime += key.duration;
-}
-
 void YukesAnim::GetTrackRuntime() {
-	GetVectorRuntime(this->m_Translations,&runtime);
-	GetVectorRuntime(this->m_Rotations, &runtime);
-	GetVectorRuntime(this->m_IKTransforms, &runtime);
+	AnimUtils::GetVectorRuntime(this->m_Translations,&runtime);
+	AnimUtils::GetVectorRuntime(this->m_Rotations, &runtime);
+	AnimUtils::GetVectorRuntime(this->m_IKTransforms, &runtime);
 };
 
