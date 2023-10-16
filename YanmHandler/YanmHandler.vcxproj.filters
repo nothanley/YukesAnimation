@@ -128,9 +128,6 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat50_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA0_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
@@ -178,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="QuatEulerConv.h">
       <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
