@@ -8,7 +8,7 @@ void YukesDecoder::DecodeMotionTrack() {
 	m_SourceTrack->m_BoneHash = ReadUInt32BE(*fs);
 	uint64_t streamEnd = uint64_t(fs->tellg()) + m_SourceTrack->m_BitSize - 0x8;
 
-	printf("\nEncode Type: %#x", m_SourceTrack->m_EncodeFormat);
+	//printf("\nEncode Type: %#x", m_SourceTrack->m_EncodeFormat);
 	ReadTrackStream(fs);
 	fs->seekg(streamEnd);
 }

@@ -127,8 +127,10 @@ extern "C" __declspec(dllexport) const float* GetRotationKeysForBone(const char*
     for (const auto& track : node->animation->tracks) {
         if (track->m_BoneHash == motionHash) {
             for (const auto& motion : track->m_Rotations) {
+
                 Vec3 rotation_vector{
                         motion.transform.row0.x, motion.transform.row0.y, motion.transform.row0.z };
+
                 transforms.push_back(rotation_vector.x);
                 transforms.push_back(rotation_vector.y);
                 transforms.push_back(rotation_vector.z);

@@ -18,8 +18,10 @@ public:
             ReadStream();  }
 
         fs->seekg(streamPos);
-        RotationHelper debug(this->vec_a, this->vec_b);
+
+        RotationHelper debug(this->vec_a, this->vec_b, this->m_Track->m_BoneHash);
         this->m_Track->m_Rotations = debug.unpackedTransforms;
+
     }
 
 private:

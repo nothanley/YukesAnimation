@@ -20,8 +20,7 @@ public:
         fs->seekg(streamPos);
         GetAnimOrigin(fs,&m_Track->m_StreamDelta);
 
-        RotationHelper debug(this->vec_a, this->vec_b);
-
+        RotationHelper debug(this->vec_a, this->vec_b, this->m_Track->m_BoneHash);
         this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
