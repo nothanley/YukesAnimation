@@ -140,26 +140,50 @@ static Vec4 operator/(const Vec4& vec_a, const float& sub) {
     return result;
 }
 
+
+static bool operator==(const Vec4& vec_a, const Vec4& vec_b) {
+
+    if (vec_a.x != vec_b.x) { return false; }
+    if (vec_a.y != vec_b.y) { return false; }
+    if (vec_a.z != vec_b.z) { return false; }
+    if (vec_a.w != vec_b.w) { return false; }
+
+    return true;
+}
+
+
 static double round_to(double value, double precision = 1.0)
 {
     return std::round(value / precision) * precision;
 }
 
-inline Vec4 NormalizeVector(Vec4 input) {
+static Vec4 ConvertVectorToQuat(const Vec4& vector) {
+    Vec4 square = vector * vector;
+    Vec4 tfm = Vec4{ square.w, square.z, square.w, square.z } + (square);
+    Vec4 result = Vec4{ tfm.y, square.z, square.z, tfm.y } + Vec4{ tfm.y, tfm.x, tfm.x, tfm.x };
+    result = sqrt(Vec4{ result.z, result.z, result.z, result.z });
+    return vector;
+}
 
-    Vec4 square = Vec4{ input.w,input.w,input.w,input.w } *input.w;
-    Vec4 result = square * ((square * 0.00286623) + -0.0161657);
+inline float NormalizeVector(const float& input) {
+
+    float divtest = input;
+    if (input > 1) { divtest = 1.0 / input; }
+
+    float square = divtest * divtest;
+    float result = square * ((square * 0.00286623) + -0.0161657);
     result = square * ((square * (result + 0.0429096)) + -0.0752896);
     result = square * ((square * (result + 0.106563)) + -0.142089);
     result = square * ((square * (result + 0.199936)) + -0.333331);
-    result = (result + 1) * input.w;
+
+    result = (result + 1.0) * divtest;
+    if (input > 1) { result = (1.5708 - result); }
 
     return result;
 }
 
 inline Vec4 InterpolateVector(Vec4 interpVec) {
     Vec4 square = interpVec * interpVec;
-
     Vec4 result = (square * -2.38899e-008);
 
     result = result + 2.75256e-006;
@@ -185,18 +209,24 @@ inline Vec4 FlattenMatrix(const Vec4* vec_a, const Vec4* vec_b, const float* int
     Vec4 vec_mult = (*vec_a) * (*vec_b);
     Vec4 val_3 = Vec4{ vec_mult.y, vec_b->x, vec_b->x, vec_mult.x } + vec_mult;
     Vec4 val_4 = Vec4{ val_3.x, vec_mult.x, vec_mult.x, val_3.w } + val_3;
-    float sqrtVal = ( 1.0 - ( double(val_4.z) * double(val_4.z) ) );
-    //sqrtVal = (sqrtVal < 0) ? 0.0 : sqrtVal;
-    sqrtVal = sqrt(sqrtVal);
+    float sqrtVal = abs( 1.0 - (val_4.z *val_4.z) );
+    sqrtVal = sqrtf(sqrtVal);
 
     // Fix this problematic code...
-    Vec4 normal = NormalizeVector(Vec4(sqrtVal / -val_4.z));
-    normal = normal * Vec4{ 0, (-*interpolation) + 1, *interpolation, 0 };
-    Vec4 normInt = InterpolateVector(normal) / Vec4{ sqrtVal,sqrtVal,sqrtVal,sqrtVal };
-    if ( isNan(normInt) || isInf(normInt) ) { normInt = Vec4{ 0,0,0,0 };    }
+    float dividend = (isnan(sqrtVal)) ? 0.0 : sqrtVal;
+    float normalVal = NormalizeVector(dividend / val_4.z); //check this
+    normalVal = (isnan(normalVal)) ? 0.0 : normalVal;
 
-    normInt.x = -(normInt.x);
-    normInt.y = -(normInt.y);
+    // continue
+    Vec4 normal = Vec4{ 0, (-*interpolation) + 1, *interpolation, 0 } * normalVal;
+    Vec4 normInt = InterpolateVector(normal);
+
+    if (normInt == Vec4{ 0,0,0,0 } && dividend == 0) { normInt = Vec4{ 0,1,0,0 }; }
+    else{ normInt = normInt / dividend; }
+
+    normInt.x = (isnan(normInt.x) || isinf(normInt.x)) ? *interpolation : normInt.x;
+    normInt.y = (isnan(normInt.y) || isinf(normInt.y)) ? *interpolation : normInt.y;
+    if (val_4.z < 0) normInt.x = -(normInt.x);
 
     return  (*vec_a * normInt.x) + (*vec_b * normInt.y);
 }
@@ -207,15 +237,16 @@ inline Vec4 GetTopLevelVector(Matrix4x4* mat, const float interpolation) {
 
     Vec4 tfmBottom = FlattenMatrix(&mat->row2, &mat->row3, &interpolation);
     Vec4 tfmTop = FlattenMatrix(&mat->row0, &mat->row1, &interpolation);
-
-    Vec4 flatVec = FlattenMatrix(&tfmTop, &tfmBottom, &subInterp);
+    Vec4 flatVec = FlattenMatrix(&tfmTop, &tfmBottom, &subInterp); //**
 
     Vec4 square = flatVec * flatVec;
     Vec4 vec_lin = square + Vec4{ square.w, square.z, square.w, square.z };
     Vec4 vec_sum = Vec4{ vec_lin.y, vec_lin.x, vec_lin.x, vec_lin.x } +
         Vec4{ vec_lin.y, square.z, square.z, vec_lin.y };
 
-    Vec4 result = flatVec / sqrt(Vec4{ vec_sum.z, vec_sum.z, vec_sum.z, vec_sum.z });
+    float divisor = sqrtf(abs(vec_sum.z)); // **
+
+    Vec4 result = flatVec / divisor;
     return result;
 }
 
@@ -410,7 +441,7 @@ inline Vec4 TransformValues(const Vec4& r9, const Vec4& rcx, const Vec4& r8, con
     //////////////////////////////////// Next Row //////////////////////////////////////
 
     Vec4 later0 = r8 * Vec4{ 1, -1,-1,-1 };
-    Vec4 laterxmm = later0 / 1.0 /* this 1 might be wrong */;
+    Vec4 laterxmm = later0 / 1.0;
 
     Vec4 lTest0 = Vec4{ r9.x, r9.w, r9.z, r9.y } *laterxmm.x;
     lTest0 = lTest0 * Vec4{ -1,1,-1,1 };
@@ -457,14 +488,14 @@ inline void MutateMatrices(Matrix4x4* mat) {
     /* Checks sign value of row's z value*/
     Vec4 val_r_3 = mat->row0 * mat->row2;
     Vec4 r3_sum = val_r_3 + Vec4{ val_r_3.y, mat->row2.x, mat->row2.x, val_r_3.x };
-    val_r_3 = r3_sum + Vec4{ r3_sum.x, val_r_3.z, val_r_3.z, r3_sum.w };
+    val_r_3 = r3_sum + Vec4{ r3_sum.x, val_r_3.x, val_r_3.x, r3_sum.w };
     if (val_r_3.z < 0) { mat->row0 = 0.0 - mat->row0; }
 
 
-    Vec4 val_r_2 = mat->row0 * mat->row1;
-    Vec4 r2_sum = val_r_2 + Vec4{ val_r_2.y, mat->row0.z, mat->row0.z, val_r_2.z };
-    val_r_2 = r2_sum + Vec4{ r2_sum.x, val_r_2.z, val_r_2.z, r2_sum.w };
-    if (val_r_3.z < 0) { mat->row1 = 0.0 - mat->row1; }
+    Vec4 val_r_2 = mat->row0 * mat->row1;   
+    Vec4 r2_sum = val_r_2 + Vec4{ val_r_2.y, mat->row0.x, mat->row0.x, val_r_2.x };
+    val_r_2 = r2_sum + Vec4{ r2_sum.x, val_r_2.x, val_r_2.x, r2_sum.w };
+    if (val_r_2.z < 0) { mat->row1 = 0.0 - mat->row1; }
 
 
     Vec4 val_r_1 = mat->row1 * mat->row3;

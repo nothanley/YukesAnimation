@@ -20,7 +20,7 @@ int main()
 {
     //std::vector<std::string> paths = GetFilesInDirectory("C://Users//wauke//Desktop///14412.bpe");
 
-    YukesActsFile anims("C://Users//wauke//Desktop///0000.dat");
+    YukesActsFile anims("C://Users//wauke//Desktop///cena_old.dat");
     anims.m_Contents->LoadAllNodes();
 
     //for (const auto& path : paths) {

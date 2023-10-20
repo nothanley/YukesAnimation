@@ -19,7 +19,7 @@ public:
 
         fs->seekg(streamPos);
 
-        RotationHelper debug(this->vec_a, this->vec_b, this->m_Track->m_BoneHash);
+        RotationHelper debug(this->vec_a, this->vec_b, this->m_Track->m_BoneHash, 8);
         this->m_Track->m_Rotations = debug.unpackedTransforms;
 
     }

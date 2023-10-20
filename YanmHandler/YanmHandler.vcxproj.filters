@@ -40,6 +40,9 @@
     <Filter Include="Header Files\Animation\Utils">
       <UniqueIdentifier>{6a160f75-94a4-466a-965e-908043275444}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Animation\TODO">
+      <UniqueIdentifier>{d46e170a-bd0d-42db-98bb-39599904eb72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\C_YukesAnimFile.cpp">
@@ -80,31 +83,16 @@
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h">
       <Filter>Header Files\Codec\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h">
       <Filter>Header Files\Codec\Factory</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_02.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat43_00.h">
@@ -178,6 +166,21 @@
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat42_00.h">
       <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h">
+      <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h">
+      <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
+      <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h">
+      <Filter>Header Files\Animation\TODO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

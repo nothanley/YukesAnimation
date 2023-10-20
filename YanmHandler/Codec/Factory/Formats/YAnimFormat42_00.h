@@ -18,8 +18,7 @@ public:
 
         fs->seekg(streamPos);
 
-        std::vector<TranslateKey> dummyVec;
-        RotationHelper debug(this->vec_a, dummyVec, this->m_Track->m_BoneHash);
+        RotationHelper debug(this->vec_a, std::vector<TranslateKey>{}, this->m_Track->m_BoneHash,8);
         this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
