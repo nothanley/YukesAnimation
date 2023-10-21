@@ -20,8 +20,25 @@ int main()
 {
     //std::vector<std::string> paths = GetFilesInDirectory("C://Users//wauke//Desktop///14412.bpe");
 
-    YukesActsFile anims("C://Users//wauke//Desktop///cena_old.dat");
-    anims.m_Contents->LoadAllNodes();
+    for (int i = 0; i < 20; i++)
+        YukesActsFile anims("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+
+    YukesActsFile("C://Users//wauke//Desktop//YukesAnim_Examples//Old_Gen_Ent//2k14_Entrance//@Entrance05.pac//EVZ//@548.pac//0000.dat", 1);
+
+    //anims.m_Contents->GetNode(1);
+    //anims.m_Contents->LoadAllNodes();
 
     //for (const auto& path : paths) {
         //printf("\nNewFile: %s", path.c_str());

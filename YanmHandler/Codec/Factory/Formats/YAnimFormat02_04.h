@@ -1,5 +1,7 @@
 /* Decodes unique bitstream */
 #include "../../../Animation/AnimationUtils.h"
+#include "../../../Animation/Utils/RotationHelper.h"
+
 using namespace AnimUtils;
 using namespace BinaryIO;
 
@@ -17,6 +19,9 @@ public:
             ReadStream(); }
 
         fs->seekg(streamPos);
+
+        RotationHelper debug(m_Track->m_Rotations, this->m_Track->m_BoneHash, 16);
+        this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
 private:
@@ -29,8 +34,12 @@ private:
         streamPos = fs->tellg();
         fs->seekg(uint64_t(streamPointer) + 0x8);
 
-        if (streamIndex == 0x0) { DecodeEulerStreamS16(fs, &numSegments, &m_Track->m_CustomTransforms); }
-        else { ReadRotationMatrices(fs,&numSegments,&m_Track->m_Rotations); }
+        if (streamIndex == 0x0) { 
+            DecodeEulerStreamS16(fs, &numSegments, &m_Track->m_CustomTransforms); 
+        }
+        else {
+            Get16bSignedMatrix(fs,&numSegments,&m_Track->m_Rotations);
+        }
     }
 
 

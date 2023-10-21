@@ -1,6 +1,6 @@
 /* Decodes unique bitstream */
 #include "../../../Animation/AnimationUtils.h"
-#include "../../../Animation/RotationHelper.h"
+#include "../../../Animation/Utils/RotationHelper.h"
 
 using namespace AnimUtils;
 using namespace BinaryIO;
@@ -21,7 +21,6 @@ public:
 
         RotationHelper debug(this->vec_a, this->vec_b, this->m_Track->m_BoneHash, 8);
         this->m_Track->m_Rotations = debug.unpackedTransforms;
-
     }
 
 private:

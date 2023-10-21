@@ -15,25 +15,35 @@ public:
 	std::string filePath;
 	uint64_t fileSize;
 	float m_Version;
+	bool doCollectRuntime = false;
 	YukesAnimRegistry* m_Registry = nullptr;
 	~YukesAnimFile() {}
 
-	YukesAnimFile(const char* FilePath) {
+	YukesAnimFile(const char* FilePath, bool collectRuntimes = false) {
 		this->filePath = FilePath;
+		this->doCollectRuntime = collectRuntimes;
 		Load();
 		fs->close();
 	}
 
-	YukesAnimFile(std::ifstream* stream) {
+	YukesAnimFile(std::ifstream* stream, bool collectRuntimes = false) {
 		this->fs = stream;
+		this->doCollectRuntime = collectRuntimes;
 		Load();
 	}
+
+	YukesAnimFile(std::ifstream* stream, const uint32_t& requestTrack, bool collectRuntimes=false) {
+		this->fs = stream;
+		this->doCollectRuntime = collectRuntimes;
+		Load(requestTrack);
+	}
+
 
 private:
 	std::ifstream* fs = nullptr;
 	bool isOk = false;
-	void Load();
-	void ReadContents();
+	void Load(const uint32_t& searchTrack=0);
+	void ReadContents(const uint32_t& searchTrack=0);
 	void ValidateContainer();
 	friend class YukesAnimRegistry;
 };

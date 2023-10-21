@@ -214,8 +214,10 @@
     <ClInclude Include="Acts\YukesActsLegacy.h" />
     <ClInclude Include="Animation\AnimationUtils.h" />
     <ClInclude Include="Animation\C_YukesAnim.h" />
-    <ClInclude Include="Animation\RotationHelper.h" />
-    <ClInclude Include="Animation\vector4.h" />
+    <ClInclude Include="Animation\Utils\QuatEulerConv.h" />
+    <ClInclude Include="Animation\Utils\RotationHelper.h" />
+    <ClInclude Include="Animation\Utils\vector4.h" />
+    <ClInclude Include="Animation\Utils\vectormath.h" />
     <ClInclude Include="Codec\C_YukesDecoder.h" />
     <ClInclude Include="Codec\Factory\C_YAnimDecodeFactory.h" />
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_01.h" />
@@ -246,7 +248,6 @@
     <ClInclude Include="Container\C_YukesAnimFile.h" />
     <ClInclude Include="DataIO\BinaryIO.h" />
     <ClInclude Include="Hash\C_YukesHash32.h" />
-    <ClInclude Include="QuatEulerConv.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

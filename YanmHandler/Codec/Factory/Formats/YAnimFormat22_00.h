@@ -1,5 +1,7 @@
 /* Decodes unique bitstream */
 #include "../../../Animation/AnimationUtils.h"
+#include "../../../Animation/Utils/RotationHelper.h"
+
 using namespace AnimUtils;
 using namespace BinaryIO;
 
@@ -15,10 +17,13 @@ public:
             ReadStream();  }
 
         fs->seekg(streamPos);
+        RotationHelper debug(this->vec_a, this->m_Track->m_BoneHash, 16);
+        this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
 private:
     std::streampos streamPos;
+    std::vector<TranslateKey> vec_a;
     int streamIndex = 0;
 
     void ReadStream() {
@@ -29,7 +34,7 @@ private:
 
         switch (streamIndex) {
         case 0x0:
-            DecodeRotationStream16S(fs, &numSegments, &m_Track->m_Rotations);
+            Get16bSignedByteArray(fs, &numSegments, &this->vec_a);
             break;
         case 0x1:
             DecodeTransStream16S(fs, &numSegments, &m_Track->m_Translations);

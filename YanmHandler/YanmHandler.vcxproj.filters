@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Animation\TODO">
       <UniqueIdentifier>{d46e170a-bd0d-42db-98bb-39599904eb72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Animation\Revised">
+      <UniqueIdentifier>{8d527106-e34c-4ef3-82ea-11fe8e799c30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\C_YukesAnimFile.cpp">
@@ -86,9 +89,6 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat00_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
     <ClInclude Include="Codec\Factory\YukesAnimEnum.h">
       <Filter>Header Files\Codec\Factory</Filter>
     </ClInclude>
@@ -102,15 +102,6 @@
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat51_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat40_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat41_00.h">
-      <Filter>Header Files\Codec\Factory\Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat50_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA0_00.h">
@@ -149,38 +140,53 @@
     <ClInclude Include="Codec\Factory\Formats\YAnimFormatA2_00.h">
       <Filter>Header Files\Codec\Factory\Formats</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\RotationHelper.h">
-      <Filter>Header Files\Animation\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\vector4.h">
-      <Filter>Header Files\Animation\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="QuatEulerConv.h">
-      <Filter>Header Files\Animation\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h">
-      <Filter>Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat42_00.h">
-      <Filter>Header Files\Animation</Filter>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h">
+      <Filter>Header Files\Animation\Revised</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat03_04.h">
-      <Filter>Header Files\Animation</Filter>
+      <Filter>Header Files\Animation\Revised</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h">
-      <Filter>Header Files\Animation\TODO</Filter>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat42_00.h">
+      <Filter>Header Files\Animation\Revised</Filter>
     </ClInclude>
-    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_04.h">
-      <Filter>Header Files\Animation\TODO</Filter>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat52_00.h">
+      <Filter>Header Files\Animation\Revised</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat53_00.h">
+      <Filter>Header Files\Animation\Revised</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat21_00.h">
-      <Filter>Header Files\Animation\TODO</Filter>
+      <Filter>Header Files\Animation\Revised</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat22_00.h">
+      <Filter>Header Files\Animation\Revised</Filter>
     </ClInclude>
     <ClInclude Include="Codec\Factory\Formats\YAnimFormat23_00.h">
+      <Filter>Header Files\Animation\Revised</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat40_00.h">
       <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat41_00.h">
+      <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat50_00.h">
+      <Filter>Header Files\Animation\TODO</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec\Factory\Formats\YAnimFormat02_01.h">
+      <Filter>Header Files\Animation\Revised</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Utils\RotationHelper.h">
+      <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Utils\vector4.h">
+      <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Utils\vectormath.h">
+      <Filter>Header Files\Animation\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Utils\QuatEulerConv.h">
+      <Filter>Header Files\Animation\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

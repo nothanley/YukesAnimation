@@ -1,4 +1,6 @@
 #include "C_YukesDecoder.h"
+#include "../Container/C_YAnimRegistry.h"
+#include "../Acts/C_YukesActsFile.h"
 using namespace BinaryIO;
 
 void YukesDecoder::DecodeMotionTrack() {
@@ -8,8 +10,16 @@ void YukesDecoder::DecodeMotionTrack() {
 	m_SourceTrack->m_BoneHash = ReadUInt32BE(*fs);
 	uint64_t streamEnd = uint64_t(fs->tellg()) + m_SourceTrack->m_BitSize - 0x8;
 
-	//printf("\nEncode Type: %#x", m_SourceTrack->m_EncodeFormat);
-	ReadTrackStream(fs);
+	// If user has not requested a specific track, do not decode bitstream
+	if (this->m_SourceTrack->m_Registry->getRuntimes &&
+		this->m_SourceTrack->m_Registry->m_runtime == 0 ) {
+		ReadTrackStream(fs);
+	}
+
+	if ( this->m_SourceTrack->m_Registry->SearchTrack == m_SourceTrack->m_BoneHash )	{
+		ReadTrackStream(fs);
+	}
+
 	fs->seekg(streamEnd);
 }
 

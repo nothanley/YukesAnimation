@@ -1,6 +1,6 @@
 /* Defines common logic and structures found throughout all serialized motion streams */
 #pragma once
-#include "vector4.h"
+#include "Utils/vectormath.h"
 #include <windows.h> 
 #include <winsock.h>
 #include <vector>
@@ -13,7 +13,6 @@ const float DegUnk = 0.000681769;
 const float SByteToDeg = 1.417322834;
 const float S8RotToDegree = 2.834645669;
 
-
 struct Vec3 {
 	float x, y, z;
 };
@@ -24,6 +23,11 @@ struct Matrix3x3 {
     Vec3 row2;
 };
 
+struct IKKey {
+    Vec4 transform;
+    uint16_t duration;
+};
+
 struct TranslateKey {
     Vec3 transform;
     uint16_t duration;
@@ -31,11 +35,6 @@ struct TranslateKey {
 
 struct MatrixKey {
     Matrix3x3 transform;
-    uint16_t duration;
-};
-
-struct IKKey {
-    Vec4 transform;
     uint16_t duration;
 };
 
@@ -76,6 +75,8 @@ namespace AnimUtils {
 
     void StreamMatrix3x3(std::istream* fs, Matrix3x3* mat);
 
+    void GetPackedMatrix3x3(std::istream* fs, Matrix3x3* mat);
+
     Matrix3x4 GetIKOriginMatrix(std::istream* fs);
 
     Vec4 UnpackMatrixVector(Matrix3x4 mat);
@@ -96,9 +97,13 @@ namespace AnimUtils {
 
     void DecodeRotationStream16S(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations);
 
+    void Get16bSignedByteArray(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* translations);
+
     void DecodeIKStream(std::istream* fs, uint16_t* numSegments, uint8_t* ikType, Matrix3x4* origin, std::vector<IKKey>* ikTransforms);
 
     void ReadRotationMatrices(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations);
+
+    void Get16bSignedMatrix(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations);
     
     void DecodeEulerStreamS16(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* collection);
 

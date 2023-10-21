@@ -15,9 +15,11 @@ void YukesActsLegacy::LoadAllNodes() {
     /* To reduce compute, do not load YANM streams
        unless user calls for 'GetNode' */
     this->fs = new std::ifstream(this->m_FileObj->filePath, ios::binary);
+    this->m_FileObj->doCollectRuntime = true;
     for (auto& node : this->nodes)
         ReadYukesMotion(&node);
-    //printf("\nAll nodes collected.\n");
+    printf("\n\n\nAll nodes collected.\n");
+    delete this->fs;
 }
 
 void YukesActsLegacy::InitializeTree() {
@@ -62,12 +64,29 @@ YukesAnimNode* YukesActsLegacy::GetNode(int index) {
     if (index > this->nodes.size()) { return nullptr; }
     this->fs = new std::ifstream(this->m_FileObj->filePath, ios::binary);
     YukesAnimNode* node = &this->nodes.at(index);
+
     /* Read YANM buffer, return pointer */
     ReadYukesMotion(node);
+
+    delete this->fs;
     return node;
 }
 
-void YukesActsLegacy::ReadYukesMotion(YukesAnimNode* node) {
+YukesAnimNode* YukesActsLegacy::GetOnlyNodeMotion(int index, const uint32_t& motionHash)
+{
+    if (index > this->nodes.size()) { return nullptr; }
+
+    this->fs = new std::ifstream(this->m_FileObj->filePath, ios::binary);
+    YukesAnimNode* node = &this->nodes.at(index);
+
+    /* Read YANM buffer, return pointer */
+    ReadYukesMotion(node,motionHash);
+
+    delete this->fs;
+    return node;
+}
+
+void YukesActsLegacy::ReadYukesMotion(YukesAnimNode* node, const uint32_t& motionHash) {
     /* Read YANM stream to a new buffer*/
     fs->seekg(node->address);
     std::istringstream* buffer = CreateStreamFromData(fs, node->size);
@@ -76,7 +95,7 @@ void YukesActsLegacy::ReadYukesMotion(YukesAnimNode* node) {
     std::ifstream yanmStream;
     yanmStream.set_rdbuf(buffer->rdbuf());
 
-    YukesAnimFile* yukesMotion = new YukesAnimFile(&yanmStream);
+    YukesAnimFile* yukesMotion = new YukesAnimFile(&yanmStream, motionHash, this->m_FileObj->doCollectRuntime);
     node->animation = yukesMotion->m_Registry;
 
     /* Clean memory */

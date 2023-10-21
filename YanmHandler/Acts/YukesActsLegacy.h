@@ -12,6 +12,7 @@ public:
 		this->m_FileObj = parent; }
 
 	YukesAnimNode* GetNode(int index) override;
+	YukesAnimNode* GetOnlyNodeMotion(int index, const uint32_t& motionHash) override;
 	void LoadTree() override;
 	void LoadAllNodes() override;
 protected:
@@ -27,5 +28,5 @@ private:
 	void InitializeTree();
 	void CollectNodes();
 	void AddNode();
-	void ReadYukesMotion(YukesAnimNode* node);
+	void ReadYukesMotion(YukesAnimNode* node, const uint32_t& motionHash=0);
 };

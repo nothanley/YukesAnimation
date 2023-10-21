@@ -39,6 +39,11 @@ void YukesActsFile::ReadLegacy() {
 
 	/* Load YANM for requested index*/
 	if (requestIndex == -1) { return; }
+
+	if (requestMotion != 0) {
+		YukesAnimNode* node = m_Contents->GetOnlyNodeMotion(this->requestIndex, this->requestMotion);
+		return; }
+
 	YukesAnimNode* node = m_Contents->GetNode(this->requestIndex);
 }
 

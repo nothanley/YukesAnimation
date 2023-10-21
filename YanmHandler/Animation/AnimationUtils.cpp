@@ -9,6 +9,12 @@ void AnimUtils::StreamMatrix3x3(std::istream* fs, Matrix3x3* mat){
 	mat->row2 = Vec3{ U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs), U16RotToDegree * ReadShortBE(*fs) };
 }
 
+void AnimUtils::GetPackedMatrix3x3(std::istream* fs, Matrix3x3* mat) {
+    mat->row0 = Vec3{ (float)ReadShortBE(*fs), (float)ReadShortBE(*fs), (float)ReadShortBE(*fs) };
+    mat->row1 = Vec3{ (float)ReadShortBE(*fs), (float)ReadShortBE(*fs), (float)ReadShortBE(*fs) };
+    mat->row2 = Vec3{ (float)ReadShortBE(*fs), (float)ReadShortBE(*fs), (float)ReadShortBE(*fs) };
+}
+
 Vec4 AnimUtils::UnpackMatrixVector(Matrix3x4 mat) {
     Vec4 out;
     out.z = (mat.row0.z * mat.row1.z) + mat.row2.z;
@@ -109,6 +115,17 @@ void AnimUtils::DecodeRotationStream16S(std::istream* fs, uint32_t* numSegments,
     }
 }
 
+void AnimUtils::Get16bSignedByteArray(std::istream* fs, uint32_t* numSegments, std::vector<TranslateKey>* translations) {
+    for (int k = 0; k < *numSegments; k++) {
+        Vec3 transform = { ReadShortBE(*fs),
+            ReadShortBE(*fs), ReadShortBE(*fs) };
+
+        uint16_t numKeys = ReadUShortBE(*fs);
+        translations->push_back(TranslateKey{ transform, numKeys });
+    }
+}
+
+
 Matrix3x4 AnimUtils::GetIKOriginMatrix(std::istream* fs) {
     Matrix3x4 mat;
     mat.row2.z = ExtractBits(ReadUShortBE(*fs));
@@ -156,6 +173,16 @@ void AnimUtils::ReadRotationMatrices(std::istream* fs, uint32_t* numSegments, st
         Matrix3x3 mat;
         uint16_t numKeys = ReadUShortBE(*fs);
         AnimUtils::StreamMatrix3x3(fs, &mat);
+        rotations->push_back(MatrixKey{ mat, numKeys });
+    }
+}
+
+
+void AnimUtils::Get16bSignedMatrix(std::istream* fs, uint32_t* numSegments, std::vector<MatrixKey>* rotations) {
+    for (int k = 0; k < *numSegments; k++) {
+        Matrix3x3 mat;
+        uint16_t numKeys = ReadUShortBE(*fs);
+        AnimUtils::GetPackedMatrix3x3(fs, &mat);
         rotations->push_back(MatrixKey{ mat, numKeys });
     }
 }

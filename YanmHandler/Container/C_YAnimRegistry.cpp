@@ -11,6 +11,7 @@ static float ReadFileVersion(std::istream* fs) {
 
 void YukesAnimRegistry::InitializeStream() {
 	this->fs = m_FileObj->fs;
+	this->getRuntimes = this->m_FileObj->doCollectRuntime;
 	GetYanmAttributes();
 	for (int i = 0; i < this->m_numTracks; i++) {
 		// Collect all animation tracks

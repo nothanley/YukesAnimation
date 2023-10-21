@@ -16,10 +16,13 @@ public:
 
         fs->seekg(streamPos);
         GetAnimOrigin(fs, &m_Track->m_StreamDelta);
+        RotationHelper debug(this->vec_a, this->m_Track->m_BoneHash, 8);
+        this->m_Track->m_Rotations = debug.unpackedTransforms;
     }
 
 private:
     std::streampos streamPos;
+    std::vector<TranslateKey> vec_a;
     int streamIndex = 0;
 
     void ReadStream() {
@@ -30,7 +33,7 @@ private:
 
         switch (streamIndex) {
         case 0x0:
-            DecodeRotationStream8S(fs, &numSegments, &m_Track->m_Rotations);
+            Get8bSignedByteArray(fs, &numSegments, &this->vec_a);
             break;
         case 0x1:
             DecodeTransStream16S(fs, &numSegments, &m_Track->m_Translations);

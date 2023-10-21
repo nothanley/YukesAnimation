@@ -1,6 +1,6 @@
 /* Decodes unique bitstream */
 #include "../../../Animation/AnimationUtils.h"
-#include "../../../Animation/RotationHelper.h"
+#include "../../../Animation/Utils/RotationHelper.h"
 
 using namespace AnimUtils;
 using namespace BinaryIO;
@@ -44,7 +44,6 @@ private:
             Get8bSignedByteArray(fs, &numSegments, &this->vec_b);
             break;
         case 0x2:
-            //DecodeEulerStreamS16(fs, &numSegments, &this->rotationsRow2 ); 
             break;
         case 0x3:
             DecodeTransStream16S(fs, &numSegments, &m_Track->m_Translations);
